@@ -22,6 +22,9 @@
 				margin-left: calc((100% - 2 * 17% - 100% / 5 * 3) / 4);
 				width: calc(100% / 5 - 5px * 2);
 				height: 100%;
+
+
+				border-radius: 10px 10px 0 0;
 				
 				transition: all .5s;
 			}
@@ -35,15 +38,74 @@
 			.contentPage .scoreBar.third {
 				background: #b87333;
 			}
+
+
+			.scoreBar .positionIndicatorHolder {
+				position: absolute;
+				top: -200px;
+				
+				width: 100%;
+				height: 100%;
+
+				background: url("images/trophy.png");
+				background-size: 50% auto;
+				background-position: 50% 15%;
+				background-repeat: no-repeat;
+			}
+			
+			.scoreBar .teamNameHolder {
+				position: relative;
+				padding-top: 20px;
+				font-size: 25px;
+				color: #444;
+			}
+
+			.scoreBar .scoreHolder {
+				position: relative;
+				
+				margin: auto;
+				margin-top: 20px;
+
+				background: rgba(255, 255, 255, .5);
+				width: 100px;
+
+				padding: 5px;
+				border-radius: 5px;
+
+
+				font-size: 25px;
+				color: #444;
+			}
+
+
+			.contentPage {
+				height: calc(100vh - 30px * 2) !important;
+			}
+			
+
 		</style>
 	</head>
 	<body>
 		<script src="/JS/jQuery.js"></script>
+		<script src="js/extraFunctions.js"></script>
+
 		<div id="mainContentHolder">
 			<div class="contentPage">
-				<div class="scoreBar second">Team A - 50 punten</div>
-				<div class="scoreBar first">b</div>
-				<div class="scoreBar third">c</div>
+				<div class="scoreBar">
+					<div class="positionIndicatorHolder"></div>
+					<div class="text teamNameHolder">Team bolsons</div>
+					<div class="text scoreHolder"></div>
+				</div>
+				<div class="scoreBar">
+					<div class="positionIndicatorHolder"></div>
+					<div class="text teamNameHolder">Team bolsons</div>
+					<div class="text scoreHolder"></div>
+				</div>
+				<div class="scoreBar">
+					<div class="positionIndicatorHolder"></div>
+					<div class="text teamNameHolder">Team bolsons</div>
+					<div class="text scoreHolder"></div>
+				</div>
 			</div>
 			<div class="contentPage hide">
 				b
@@ -55,36 +117,176 @@
 
 				this.scorePage = new Page_scoreBoard();
 			}
-
+			
 			let teams = [
-				{
-					name: "team A",
-					score: 13,
-				},
-				{
-					name: "team B",
-					score: 15,
-				},
-				{
-					name: "team C",
-					score: 11,
-				}
+				[
+					{
+						name: "team A",
+						score: 3,
+					},
+					{
+						name: "team B",
+						score: 7,
+					},
+					{
+						name: "team C",
+						score: 4,
+					}
+				],
+				[
+					{
+						name: "team A",
+						score: 7,
+					},
+					{
+						name: "team B",
+						score: 9,
+					},
+					{
+						name: "team C",
+						score: 8,
+					}
+				],
+				[
+					{
+						name: "team A",
+						score: 10,
+					},
+					{
+						name: "team B",
+						score: 11,
+					},
+					{
+						name: "team C",
+						score: 9,
+					}
+				],
+				[
+					{
+						name: "team A",
+						score: 12,
+					},
+					{
+						name: "team B",
+						score: 13,
+					},
+					{
+						name: "team C",
+						score: 10,
+					}
+				],
+				[
+					{
+						name: "team A",
+						score: 13,
+					},
+					{
+						name: "team B",
+						score: 15,
+					},
+					{
+						name: "team C",
+						score: 11,
+					}
+				],
+				[
+					{
+						name: "team A",
+						score: 15,
+					},
+					{
+						name: "team B",
+						score: 16,
+					},
+					{
+						name: "team C",
+						score: 15,
+					}
+				],
+
+				[
+					{
+						name: "team A",
+						score: 16,
+					},
+					{
+						name: "team B",
+						score: 19,
+					},
+					{
+						name: "team C",
+						score: 17,
+					}
+				],
+				[
+					{
+						name: "team A",
+						score: 19,
+					},
+					{
+						name: "team B",
+						score: 20,
+					},
+					{
+						name: "team C",
+						score: 21,
+					}
+				],
+				[
+					{
+						name: "team A",
+						score: 23,
+					},
+					{
+						name: "team B",
+						score: 27,
+					},
+					{
+						name: "team C",
+						score: 28,
+					}
+				],
+				[
+					{
+						name: "team A",
+						score: 28,
+					},
+					{
+						name: "team B",
+						score: 31,
+					},
+					{
+						name: "team C",
+						score: 35,
+					}
+				],
+				[
+					{
+						name: "team A",
+						score: 34,
+					},
+					{
+						name: "team B",
+						score: 38,
+					},
+					{
+						name: "team C",
+						score: 41,
+					}
+				],
 			];
 
-let teamsB = [
-				{
-					name: "team A",
-					score: 17,
-				},
-				{
-					name: "team B",
-					score: 16,
-				},
-				{
-					name: "team C",
-					score: 16,
-				}
-			]
+
+			let index = 0;
+			let loop = function () {
+				if (index >= teams.length) return;
+				Page.scorePage.setScoresByTeam(teams[index]);
+				index++;
+				setTimeout(loop, 2000);
+			};
+			
+			setTimeout(loop, 100);
+
 
 			function Page_scoreBoard() {
 				const This = this;
@@ -95,21 +297,20 @@ let teamsB = [
 
 				this.setScoresByTeam = function(_teams) {
 					_teams = setTeamPositions(_teams);
-					let scoreRange = getScoreRange(_teams);
+					let maxScore = 30;
+					for (team of _teams) if (team.score > maxScore) maxScore = team.score;
 
-					const percRange = 1 - scoreRange.min / scoreRange.max;//.5;
 
 					for (let i = 0; i < _teams.length; i++)
 					{
 						updateScoreBar(
 							i, 
 							_teams[i],
-							(_teams[i].score - scoreRange.min) / (scoreRange.max - scoreRange.min) * percRange + 1 - percRange
+							_teams[i].score / maxScore
 						);
 					}
 				}
 
-				this.setTeamPositions = setTeamPositions;
 				function setTeamPositions(_teams) {
 					let sortedTeams = sortTeams(_teams);
 
@@ -137,16 +338,6 @@ let teamsB = [
 				}
 
 
-				function getScoreRange(_teams) {
-					let sortedTeams = sortTeams(teams);
-
-					return {
-						max: sortedTeams[0].score,
-						min: sortedTeams[sortedTeams.length - 1].score
-					}
-				} 
-
-
 				const positionClasses = ["first", "second", "third"];
 				function updateScoreBar(_scoreBarIndex, _team, _scorePerc) {
 					let scoreBar = HTML.scoreBars[_scoreBarIndex];
@@ -154,17 +345,41 @@ let teamsB = [
 					for (Class of positionClasses) scoreBar.classList.remove(Class);
 					scoreBar.classList.add(positionClasses[_team.position]);
 
+					setTextToElement(scoreBar.children[1], _team.name);
+
 					setScoreBarHeight(scoreBar, _scorePerc);
+					setTimeout(function () {
+						animateScore(_team.score, scoreBar);
+					}, 300);
 				}
 
+				function animateScore(_score, _scoreBar) {
+					let curScore = parseInt(_scoreBar.children[2].innerHTML);
+					if (isNaN(curScore)) curScore = 0;
+					let startScore = curScore;
+
+
+					update();
+					function update() {
+						let scoreVelocity = (_score - curScore) * .1;
+						if (scoreVelocity < .5) scoreVelocity = 1;
+						curScore += scoreVelocity;
+
+						_scoreBar.children[2].innerHTML = Math.round(curScore) + "pts";
+						if (curScore >= _score) return;
+
+						setTimeout(function () {update()}, 50);
+					}
+				}
+
+
+
 				function setScoreBarHeight(_scoreBar, _percentage) {
-					const maxHeight = .7;// 50 %
-
-					_percentage *= maxHeight;
-					if (_percentage < .01) _percentage = .01;
-					if (_percentage > 1) _percentage = 1;
-
-					_scoreBar.style.top = (1 - _percentage) * 100 + "%";
+					const min = .14;
+					const max = .75;
+					
+					let percentage = mapValue(_percentage, 0, 1, min, max);
+					_scoreBar.style.top = (1 - percentage) * 100 + "%";
 				}
 			}
 
