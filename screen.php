@@ -118,6 +118,33 @@
 				transition: all .3s;
 			}
 
+
+
+			.contentPage .catagoryHolder {
+				position: relative;
+				
+				margin: auto;
+				margin-top: 20px;
+
+				width: auto;
+				max-width: 80vw;
+
+				display: inline-block;
+				
+				padding: 10px 15px;
+
+				/*background: rgba(255, 255, 255, .85);*/
+				border-radius: 10px;
+				box-shadow: 5px 5px 30px 10px rgba(0, 0, 0, .01);
+
+				font-size: 25px;
+				/*color: #333;*/
+				color: #eee;
+
+				transition: all .3s;
+			}
+
+
 		
 
 
@@ -125,9 +152,9 @@
 				position: relative;
 				
 				margin: auto;
-				top: 50%;
+				top: 40%;
 				transform: translateY(-50%);
-				
+
 				width: auto;
 				max-width: 80vw;
 				height: auto;
@@ -196,8 +223,14 @@
 			</div>
 			
 			<div class="contentPage">
+
+				
 			
 				<div class="centerAligner">
+					<div class="text hide catagoryHolder">
+					</div>
+					<br>
+
 					<div class="text hide" id="questionHolder">
 					</div>
 				</div>

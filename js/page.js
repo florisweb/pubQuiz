@@ -163,15 +163,16 @@ const Page = new function() {
 // ];
 
 
-// let index = 0;
-// let loop = function () {
-// 	if (index >= teams.length) return;
-// 	Page.scorePage.setScoresByTeam(teams[index]);
-// 	index++;
-// 	setTimeout(loop, 2000);
-// };
+let index = 0;
+let loop = function () {
+	if (index >= questions.length) index = 0;
+	// Page.scorePage.setScoresByTeam(teams[index]);
+	Page.questionPage.showQuestion(questions[index])
+	index++;
+	setTimeout(loop, 3000 * Math.random() + 1000);
+};
 
-// setTimeout(loop, 100);
+setTimeout(loop, 100);
 
 
 function Page_scoreBoard() {
@@ -300,6 +301,7 @@ function Page_questionPage() {
 	const This = this;
 	const HTML = {
 		questionHolder: questionHolder,
+		catagoryHolder: $(".contentPage .catagoryHolder")[0],
 		body: document.body
 	}
 
@@ -323,6 +325,8 @@ function Page_questionPage() {
 
 	function writeCatagory(_catagory) {
 		HTML.body.style.background = _catagory.color;
+		setTextToElement(HTML.catagoryHolder, _catagory.name);
+
 	}
 
 
