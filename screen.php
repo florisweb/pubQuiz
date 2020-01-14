@@ -31,12 +31,15 @@
 
 			.contentPage .scoreBar.first {
 				background: #fc5;
+				box-shadow: 0 0 30px 10px rgba(255, 204, 85, .15);
 			}
 			.contentPage .scoreBar.second {
 				background: #D3D3D3;
+				box-shadow: 0 0 30px 10px rgba(211, 211, 211, .15);
 			}
 			.contentPage .scoreBar.third {
 				background: #b87333;
+				box-shadow: 0 0 30px 10px rgba(184, 115, 51, .15);
 			}
 
 
@@ -46,13 +49,29 @@
 				
 				width: 100%;
 				height: 100%;
-
-				background: url("images/trophy.png");
-				background-size: 50% auto;
-				background-position: 50% 15%;
+			}
+			
+			.scoreBar.first .positionIndicatorHolder {
+				background: url("images/trophyGold.png"); 
+				background-size: 30% auto;
+				background-position: 50% 10%;
+				background-repeat: no-repeat;
+			}
+			.scoreBar.second .positionIndicatorHolder {
+				background: url("images/trophySilver.png");
+				background-size: 30% auto;
+				background-position: 50% 10%;
+				background-repeat: no-repeat;
+			}
+			.scoreBar.third .positionIndicatorHolder {
+				background: url("images/trophyBronze.png");
+				background-size: 30% auto;
+				background-position: 50% 10%;
 				background-repeat: no-repeat;
 			}
 			
+
+
 			.scoreBar .teamNameHolder {
 				position: relative;
 				padding-top: 20px;
