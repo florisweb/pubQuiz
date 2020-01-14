@@ -3,7 +3,8 @@ html {
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
-	background: #eee;
+	/*background: #eee;*/
+	background: linear-gradient(to bottom right, #fff, #000);
 }
 
 
@@ -65,7 +66,6 @@ html {
 
 
 #mainContentHolder {
-	top: calc(30px + 10px * 2);
 	height: calc(100vh - 30px * 2 - 10px * 2 * 2 - 30px);
 	text-align: center;
 }
@@ -77,9 +77,8 @@ html {
 	top: 0;
 
 	width: 100vw;
-	height: calc(100vh - 30px * 2 - 10px * 2 * 2 - 30px);
+	height: calc(100vh);
 	transition: all .3s;
-	border: 1px solid red;
 }
 
 #mainContentHolder .contentPage.hide {

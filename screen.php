@@ -102,34 +102,113 @@
 			}
 			
 
+
+
+			body {
+				position: fixed;
+				top: 0;
+				left: 0;
+
+				margin: 0;
+
+				width: 100vw;
+				height: 100vh;
+				opacity: .9;
+				background: #eee;
+				transition: all .3s;
+			}
+
+		
+
+
+			#questionHolder {
+				position: relative;
+				
+				margin: auto;
+				top: 50%;
+				transform: translateY(-50%);
+				
+				width: auto;
+				max-width: 80vw;
+				height: auto;
+
+
+				display: inline-block;
+				
+				padding: 25px;
+
+
+				background: rgba(255, 255, 255, .9);
+				border-radius: 10px;
+				box-shadow: 5px 5px 30px 10px rgba(0, 0, 0, .05);
+
+				font-size: 40px;
+				color: #333;
+
+				transition: all .3s;
+			}
+
+			#questionHolder.hide {
+				animation: dropOut 0.6s 1;
+				animation-fill-mode: forwards;
+			}
+
+			#questionHolder:not(.hide) {
+				animation: dropIn 0.6s 1;
+				animation-fill-mode: forwards;
+			}
+
+
+			@keyframes dropOut {
+			    0%   {transform: scale(1) translateY(-50%); opacity: 1}
+			    30%   {transform: scale(1.1) translateY(-50%); opacity: 1}
+			  	100%   {transform: scale(.5) translateY(-50%); opacity: 0}
+			}
+			@keyframes dropIn {
+			    0%   {transform: scale(0) translateY(-50%); opacity: 0}
+			    60%   {transform: scale(1.1) translateY(-50%); opacity: 1}
+			    70%   {transform: scale(1.1) translateY(-50%);}
+			  	100%   {transform: scale(1) translateY(-50%)}
+			}
+
+
 		</style>
 	</head>
 	<body>
+	
+		<div id="mainContentHolder">
+			<div class="contentPage hide">
+				<div class="scoreBar">
+					<div class="positionIndicatorHolder"></div>
+					<div class="text teamNameHolder">Team bolsons</div>
+					<div class="text scoreHolder"></div>
+				</div>
+				<div class="scoreBar">
+					<div class="positionIndicatorHolder"></div>
+					<div class="text teamNameHolder">Team bolsons</div>
+					<div class="text scoreHolder"></div>
+				</div>
+				<div class="scoreBar">
+					<div class="positionIndicatorHolder"></div>
+					<div class="text teamNameHolder">Team bolsons</div>
+					<div class="text scoreHolder"></div>
+				</div>
+			</div>
+			
+			<div class="contentPage">
+			
+				<div class="centerAligner">
+					<div class="text hide" id="questionHolder">
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 		<script src="/JS/jQuery.js"></script>
 		<script src="js/extraFunctions.js"></script>
 		<script src="js/page.js"></script>
 
-		<div id="mainContentHolder">
-			<div class="contentPage">
-				<div class="scoreBar">
-					<div class="positionIndicatorHolder"></div>
-					<div class="text teamNameHolder">Team bolsons</div>
-					<div class="text scoreHolder"></div>
-				</div>
-				<div class="scoreBar">
-					<div class="positionIndicatorHolder"></div>
-					<div class="text teamNameHolder">Team bolsons</div>
-					<div class="text scoreHolder"></div>
-				</div>
-				<div class="scoreBar">
-					<div class="positionIndicatorHolder"></div>
-					<div class="text teamNameHolder">Team bolsons</div>
-					<div class="text scoreHolder"></div>
-				</div>
-			</div>
-			<div class="contentPage hide">
-				b
-			</div>
-		</div>
+
 	</body>
 </html>

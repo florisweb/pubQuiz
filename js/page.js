@@ -1,176 +1,177 @@
 const Page = new function() {
 
 	this.scorePage = new Page_scoreBoard();
+	this.questionPage = new Page_questionPage();
 }
 
-let teams = [
-	[
-		{
-			name: "team A",
-			score: 3,
-		},
-		{
-			name: "team B",
-			score: 7,
-		},
-		{
-			name: "team C",
-			score: 4,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 7,
-		},
-		{
-			name: "team B",
-			score: 9,
-		},
-		{
-			name: "team C",
-			score: 8,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 10,
-		},
-		{
-			name: "team B",
-			score: 11,
-		},
-		{
-			name: "team C",
-			score: 9,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 12,
-		},
-		{
-			name: "team B",
-			score: 13,
-		},
-		{
-			name: "team C",
-			score: 10,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 13,
-		},
-		{
-			name: "team B",
-			score: 15,
-		},
-		{
-			name: "team C",
-			score: 11,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 15,
-		},
-		{
-			name: "team B",
-			score: 16,
-		},
-		{
-			name: "team C",
-			score: 15,
-		}
-	],
+// let teams = [
+// 	[
+// 		{
+// 			name: "team A",
+// 			score: 3,
+// 		},
+// 		{
+// 			name: "team B",
+// 			score: 7,
+// 		},
+// 		{
+// 			name: "team C",
+// 			score: 4,
+// 		}
+// 	],
+// 	[
+// 		{
+// 			name: "team A",
+// 			score: 7,
+// 		},
+// 		{
+// 			name: "team B",
+// 			score: 9,
+// 		},
+// 		{
+// 			name: "team C",
+// 			score: 8,
+// 		}
+// 	],
+// 	[
+// 		{
+// 			name: "team A",
+// 			score: 10,
+// 		},
+// 		{
+// 			name: "team B",
+// 			score: 11,
+// 		},
+// 		{
+// 			name: "team C",
+// 			score: 9,
+// 		}
+// 	],
+// 	[
+// 		{
+// 			name: "team A",
+// 			score: 12,
+// 		},
+// 		{
+// 			name: "team B",
+// 			score: 13,
+// 		},
+// 		{
+// 			name: "team C",
+// 			score: 10,
+// 		}
+// 	],
+// 	[
+// 		{
+// 			name: "team A",
+// 			score: 13,
+// 		},
+// 		{
+// 			name: "team B",
+// 			score: 15,
+// 		},
+// 		{
+// 			name: "team C",
+// 			score: 11,
+// 		}
+// 	],
+// 	[
+// 		{
+// 			name: "team A",
+// 			score: 15,
+// 		},
+// 		{
+// 			name: "team B",
+// 			score: 16,
+// 		},
+// 		{
+// 			name: "team C",
+// 			score: 15,
+// 		}
+// 	],
 
-	[
-		{
-			name: "team A",
-			score: 16,
-		},
-		{
-			name: "team B",
-			score: 19,
-		},
-		{
-			name: "team C",
-			score: 17,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 19,
-		},
-		{
-			name: "team B",
-			score: 20,
-		},
-		{
-			name: "team C",
-			score: 21,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 23,
-		},
-		{
-			name: "team B",
-			score: 27,
-		},
-		{
-			name: "team C",
-			score: 28,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 28,
-		},
-		{
-			name: "team B",
-			score: 31,
-		},
-		{
-			name: "team C",
-			score: 35,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 34,
-		},
-		{
-			name: "team B",
-			score: 38,
-		},
-		{
-			name: "team C",
-			score: 41,
-		}
-	],
-];
+// 	[
+// 		{
+// 			name: "team A",
+// 			score: 16,
+// 		},
+// 		{
+// 			name: "team B",
+// 			score: 19,
+// 		},
+// 		{
+// 			name: "team C",
+// 			score: 17,
+// 		}
+// 	],
+// 	[
+// 		{
+// 			name: "team A",
+// 			score: 19,
+// 		},
+// 		{
+// 			name: "team B",
+// 			score: 20,
+// 		},
+// 		{
+// 			name: "team C",
+// 			score: 21,
+// 		}
+// 	],
+// 	[
+// 		{
+// 			name: "team A",
+// 			score: 23,
+// 		},
+// 		{
+// 			name: "team B",
+// 			score: 27,
+// 		},
+// 		{
+// 			name: "team C",
+// 			score: 28,
+// 		}
+// 	],
+// 	[
+// 		{
+// 			name: "team A",
+// 			score: 28,
+// 		},
+// 		{
+// 			name: "team B",
+// 			score: 31,
+// 		},
+// 		{
+// 			name: "team C",
+// 			score: 35,
+// 		}
+// 	],
+// 	[
+// 		{
+// 			name: "team A",
+// 			score: 34,
+// 		},
+// 		{
+// 			name: "team B",
+// 			score: 38,
+// 		},
+// 		{
+// 			name: "team C",
+// 			score: 41,
+// 		}
+// 	],
+// ];
 
 
-let index = 0;
-let loop = function () {
-	if (index >= teams.length) return;
-	Page.scorePage.setScoresByTeam(teams[index]);
-	index++;
-	setTimeout(loop, 2000);
-};
+// let index = 0;
+// let loop = function () {
+// 	if (index >= teams.length) return;
+// 	Page.scorePage.setScoresByTeam(teams[index]);
+// 	index++;
+// 	setTimeout(loop, 2000);
+// };
 
-setTimeout(loop, 100);
+// setTimeout(loop, 100);
 
 
 function Page_scoreBoard() {
@@ -266,4 +267,63 @@ function Page_scoreBoard() {
 		let percentage = mapValue(_percentage, 0, 1, min, max);
 		_scoreBar.style.top = (1 - percentage) * 100 + "%";
 	}
+}
+
+
+
+
+let catagories = [
+	{name: "Algemene kennis", color: "#11B1B2"},
+	{name: "Aardrijkskunde", color: "#08f7a8"},
+	{name: "Geschiedenis", color: "#F0C808"},
+	{name: "Cultuur", color: "#DD1C1A"},
+	{name: "Lokaal", color: "#11B1B2"},
+	{name: "Sport", color: "#11B1B2"},
+	{name: "Muziek", color: "#11B1B2"},
+	{name: "Politiek", color: "#11B1B2"},
+	{name: "Kerk", color: "#11B1B2"},
+];
+
+let questions = [
+	{question: "Wat is de hoofdstad van Noord-Holland?", catagory: catagories[0]},
+	{question: "Een groep jongeren gaat van Dieren met de trein naar Roemenië. Door welke landen komen zij met de trein?", catagory: catagories[1]},
+	{question: "Wat zijn de drie (ouderwetse) betekenissen van een Talent?", catagory: catagories[2]},
+	{question: "Tot welke taalgroep hoort het Roemeens?", catagory: catagories[3]},
+	{question: "Vraag over dracula?", catagory: catagories[3]},
+
+];
+
+
+
+
+function Page_questionPage() {
+	const This = this;
+	const HTML = {
+		questionHolder: questionHolder,
+		body: document.body
+	}
+
+
+	this.showQuestion = function(_question) {
+
+		writeQuestion(_question);
+		setTimeout(function () {writeCatagory(_question.catagory)}, 500);
+
+	}
+
+
+	
+	function writeQuestion(_question) {
+		HTML.questionHolder.classList.add("hide");
+		setTimeout(function () {
+			setTextToElement(HTML.questionHolder, _question.question);
+			HTML.questionHolder.classList.remove("hide");
+		}, 500);
+	}
+
+	function writeCatagory(_catagory) {
+		HTML.body.style.background = _catagory.color;
+	}
+
+
 }
