@@ -22,7 +22,7 @@ wsServer = new WebSocketServer({
 });
  
 function originIsAllowed(origin) {
-    if (origin != "http://localhost") return false;
+    if (origin != "http://localhost" && origin != "http://192.168.178.23") return false;
     return true;
 }
 
@@ -70,6 +70,9 @@ wsServer.on('request', function(request) {
         let clientData = JSON.parse(message.utf8Data);
 
         if (!Client.enabled) return Client.enable(clientData);
+        if (Client.type != "controller" || !Client.screenClients.length) return;
+        
+        for (client of Client.screenClients) client.send(JSON.stringify(clientData));
     });
 
     
@@ -88,6 +91,8 @@ function _Client(_connection) {
     this.type       = false;
     this.connection = _connection;
 
+    this.screenClients = [];
+
     this.enable = function(_data) {
         let clientType = _data.type;
         switch (clientType) 
@@ -97,6 +102,7 @@ function _Client(_connection) {
                 let controller = Clients.findController(_data.key);
                 if (!controller) return this.send(JSON.stringify({error: "Controller not found"}));
                 this.controller = controller;
+                this.controller.screenClients.push(this);
 
                 this.send(JSON.stringify({connectionStatus: "OK", x: controller.id}));
                 this.controller.send(JSON.stringify({message: "A displayer connected", id: this.id}));

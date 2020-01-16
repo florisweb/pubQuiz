@@ -223,8 +223,6 @@
 			</div>
 			
 			<div class="contentPage">
-
-				
 			
 				<div class="centerAligner">
 					<div class="text hide catagoryHolder">
@@ -242,6 +240,12 @@
 		<script src="js/extraFunctions.js"></script>
 		<script src="js/page.js"></script>
 
+		<script src="js/server.js"></script>
+
+		<script>
+			const Server = new _Server_displayer(89130);
+
+		</script>
 
 	</body>
 </html>
