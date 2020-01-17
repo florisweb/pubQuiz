@@ -43,19 +43,19 @@
 }
 
 .scoreBar.first .positionIndicatorHolder {
-	background: url("images/trophyGold.png"); 
+	background: url("../images/trophyGold.png"); 
 	background-size: 30% auto;
 	background-position: 50% 10%;
 	background-repeat: no-repeat;
 }
 .scoreBar.second .positionIndicatorHolder {
-	background: url("images/trophySilver.png");
+	background: url("../images/trophySilver.png");
 	background-size: 30% auto;
 	background-position: 50% 10%;
 	background-repeat: no-repeat;
 }
 .scoreBar.third .positionIndicatorHolder {
-	background: url("images/trophyBronze.png");
+	background: url("../images/trophyBronze.png");
 	background-size: 30% auto;
 	background-position: 50% 10%;
 	background-repeat: no-repeat;
