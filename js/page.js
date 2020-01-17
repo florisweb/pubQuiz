@@ -1,185 +1,230 @@
 const Page = new function() {
 
-	this.scorePage = new Page_scoreBoard();
-	this.questionPage = new Page_questionPage();
+	this.curPage 		= this.questionPage;
+	this.scorePage 		= new Page_scoreBoard();
+	this.questionPage 	= new Page_questionPage();
 }
 
-// let teams = [
-// 	[
-// 		{
-// 			name: "team A",
-// 			score: 3,
-// 		},
-// 		{
-// 			name: "team B",
-// 			score: 7,
-// 		},
-// 		{
-// 			name: "team C",
-// 			score: 4,
-// 		}
-// 	],
-// 	[
-// 		{
-// 			name: "team A",
-// 			score: 7,
-// 		},
-// 		{
-// 			name: "team B",
-// 			score: 9,
-// 		},
-// 		{
-// 			name: "team C",
-// 			score: 8,
-// 		}
-// 	],
-// 	[
-// 		{
-// 			name: "team A",
-// 			score: 10,
-// 		},
-// 		{
-// 			name: "team B",
-// 			score: 11,
-// 		},
-// 		{
-// 			name: "team C",
-// 			score: 9,
-// 		}
-// 	],
-// 	[
-// 		{
-// 			name: "team A",
-// 			score: 12,
-// 		},
-// 		{
-// 			name: "team B",
-// 			score: 13,
-// 		},
-// 		{
-// 			name: "team C",
-// 			score: 10,
-// 		}
-// 	],
-// 	[
-// 		{
-// 			name: "team A",
-// 			score: 13,
-// 		},
-// 		{
-// 			name: "team B",
-// 			score: 15,
-// 		},
-// 		{
-// 			name: "team C",
-// 			score: 11,
-// 		}
-// 	],
-// 	[
-// 		{
-// 			name: "team A",
-// 			score: 15,
-// 		},
-// 		{
-// 			name: "team B",
-// 			score: 16,
-// 		},
-// 		{
-// 			name: "team C",
-// 			score: 15,
-// 		}
-// 	],
 
-// 	[
-// 		{
-// 			name: "team A",
-// 			score: 16,
-// 		},
-// 		{
-// 			name: "team B",
-// 			score: 19,
-// 		},
-// 		{
-// 			name: "team C",
-// 			score: 17,
-// 		}
-// 	],
-// 	[
-// 		{
-// 			name: "team A",
-// 			score: 19,
-// 		},
-// 		{
-// 			name: "team B",
-// 			score: 20,
-// 		},
-// 		{
-// 			name: "team C",
-// 			score: 21,
-// 		}
-// 	],
-// 	[
-// 		{
-// 			name: "team A",
-// 			score: 23,
-// 		},
-// 		{
-// 			name: "team B",
-// 			score: 27,
-// 		},
-// 		{
-// 			name: "team C",
-// 			score: 28,
-// 		}
-// 	],
-// 	[
-// 		{
-// 			name: "team A",
-// 			score: 28,
-// 		},
-// 		{
-// 			name: "team B",
-// 			score: 31,
-// 		},
-// 		{
-// 			name: "team C",
-// 			score: 35,
-// 		}
-// 	],
-// 	[
-// 		{
-// 			name: "team A",
-// 			score: 34,
-// 		},
-// 		{
-// 			name: "team B",
-// 			score: 38,
-// 		},
-// 		{
-// 			name: "team C",
-// 			score: 41,
-// 		}
-// 	],
-// ];
+let teams = [
+	[
+		{
+			name: "team A",
+			score: 3,
+		},
+		{
+			name: "team B",
+			score: 7,
+		},
+		{
+			name: "team C",
+			score: 4,
+		}
+	],
+	[
+		{
+			name: "team A",
+			score: 7,
+		},
+		{
+			name: "team B",
+			score: 9,
+		},
+		{
+			name: "team C",
+			score: 8,
+		}
+	],
+	[
+		{
+			name: "team A",
+			score: 10,
+		},
+		{
+			name: "team B",
+			score: 11,
+		},
+		{
+			name: "team C",
+			score: 9,
+		}
+	],
+	[
+		{
+			name: "team A",
+			score: 12,
+		},
+		{
+			name: "team B",
+			score: 13,
+		},
+		{
+			name: "team C",
+			score: 10,
+		}
+	],
+	[
+		{
+			name: "team A",
+			score: 13,
+		},
+		{
+			name: "team B",
+			score: 15,
+		},
+		{
+			name: "team C",
+			score: 11,
+		}
+	],
+	[
+		{
+			name: "team A",
+			score: 15,
+		},
+		{
+			name: "team B",
+			score: 16,
+		},
+		{
+			name: "team C",
+			score: 15,
+		}
+	],
+
+	[
+		{
+			name: "team A",
+			score: 16,
+		},
+		{
+			name: "team B",
+			score: 19,
+		},
+		{
+			name: "team C",
+			score: 17,
+		}
+	],
+	[
+		{
+			name: "team A",
+			score: 19,
+		},
+		{
+			name: "team B",
+			score: 20,
+		},
+		{
+			name: "team C",
+			score: 21,
+		}
+	],
+	[
+		{
+			name: "team A",
+			score: 23,
+		},
+		{
+			name: "team B",
+			score: 27,
+		},
+		{
+			name: "team C",
+			score: 28,
+		}
+	],
+	[
+		{
+			name: "team A",
+			score: 28,
+		},
+		{
+			name: "team B",
+			score: 31,
+		},
+		{
+			name: "team C",
+			score: 35,
+		}
+	],
+	[
+		{
+			name: "team A",
+			score: 34,
+		},
+		{
+			name: "team B",
+			score: 38,
+		},
+		{
+			name: "team C",
+			score: 41,
+		}
+	],
+]; 
 
 
-let index = 0;
-let loop = function () {
-	if (index >= questions.length) index = 0;
-	// Page.scorePage.setScoresByTeam(teams[index]);
-	Page.questionPage.showQuestion(questions[index])
-	index++;
-	setTimeout(loop, 3000 * Math.random() + 1000);
-};
+// let index = 0;
+// let loop = function () {
+// 	if (index >= questions.length) index = 0;
+// // Page.scorePage.setScoresByTeam(teams[index]);
+// 	Page.questionPage.showQuestion(questions[index]);
+// 	index++;
+// 	setTimeout(loop, 3000 * Math.random() + 1000);
+// };
 
-setTimeout(loop, 100);
+// setTimeout(loop, 100);
+
+
+function _Page(_config) {
+	let Config = _config;
+	this.name = _config.name;
+	const HTML = {
+		pages: $(".contentPage")
+	}
+
+
+
+	this.open = function() {
+		Page.curPage = this;
+
+		openPageByIndex(Config.index);
+		Config.onOpen();
+	}
+
+	
+	function openPageByIndex(_index) {
+		for (page of HTML.pages) page.classList.add("hide");
+		HTML.pages[_index].classList.remove("hide");
+	}
+}
+
+
+
+
+
+
+
+
 
 
 function Page_scoreBoard() {
 	const This = this;
+	_Page.call(this, {
+		name: "score",
+		index: 0,
+		onOpen: function() {
+			HTML.body.style.background = "";
+			This.setScoresByTeam(teams[0]);
+		}
+	});
+
 	const HTML = {
-		scoreBars: $(".contentPage .scoreBar")
+		scoreBars: $(".contentPage .scoreBar"),
+		body: document.body
 	}
+	
 
 
 	this.setScoresByTeam = function(_teams) {
@@ -273,6 +318,12 @@ function Page_scoreBoard() {
 
 
 
+
+
+
+
+
+
 let catagories = [
 	{name: "Algemene kennis", color: "#11B1B2"},
 	{name: "Aardrijkskunde", color: "#08f7a8"},
@@ -291,7 +342,6 @@ let questions = [
 	{question: "Wat zijn de drie (ouderwetse) betekenissen van een Talent?", catagory: catagories[2]},
 	{question: "Tot welke taalgroep hoort het Roemeens?", catagory: catagories[3]},
 	{question: "Vraag over dracula?", catagory: catagories[3]},
-
 ];
 
 
@@ -299,6 +349,13 @@ let questions = [
 
 function Page_questionPage() {
 	const This = this;
+	_Page.call(this, {
+		name: "question",
+		index: 1,
+		onOpen: function() {This.showQuestion(questions[0])}
+	});
+
+
 	const HTML = {
 		questionHolder: questionHolder,
 		catagoryHolder: $(".contentPage .catagoryHolder")[0],
@@ -326,7 +383,6 @@ function Page_questionPage() {
 	function writeCatagory(_catagory) {
 		HTML.body.style.background = _catagory.color;
 		setTextToElement(HTML.catagoryHolder, _catagory.name);
-
 	}
 
 
