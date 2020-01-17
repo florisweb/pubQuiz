@@ -49,12 +49,11 @@
 
 		<script src="/JS/jQuery.js"></script>
 		<script src="js/extraFunctions.js"></script>
-		<script src="js/page.js"></script>
+		<script src="js/displayer.js"></script>
 
 		<script src="js/server.js"></script>
 
 		<script>
-
 			let displayKey = (
 			<?php
 				echo (int)$_GET["key"];

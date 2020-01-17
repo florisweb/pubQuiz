@@ -74,8 +74,13 @@ function _Server_displayer(_key) {
 		console.log(`[message] Data received from server: ${event.data}`);
 		let data = JSON.parse(event.data);
 		if (!This.enabled) return enableDisplayer(data);
-	  	
-	  	Page.questionPage.showQuestion(questions[data.index]);
+
+		switch (data.action)
+		{
+			case "showQuestion": Page.questionPage.open(data.question); break;
+			case "showScore": Page.scorePage.open(data.scores); break;
+			default: console.warn("Action " + data.action + " doesn't exist"); break;
+		}
 	};
 
 
