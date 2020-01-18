@@ -235,11 +235,14 @@ body {
 	background: #eee;
 }
 
+.scoreListHolder .listItem:last-child .lineHolder {
+	display: none;
+}
+
 .scoreListHolder .listItem .text {
 	font-size: 16px !important;
 	font-weight: bolder;
 }
-
 
 .scoreListHolder .listItem:nth-child(3) {margin-bottom: 15px;}
 .scoreListHolder .listItem:nth-child(3) .lineHolder {
