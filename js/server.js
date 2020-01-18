@@ -22,6 +22,10 @@ function _Server(_socketHandler) {
 	  console.log(`[error] ${error.message}`);
 	};
 
+	this.onConnect = function() {
+		console.log("[Connected]");
+	}
+
 	return This;
 }
 
@@ -52,6 +56,7 @@ function _Server_controller() {
 		This.key = _data.key;
 	  	
 	  	This.enabled = true;
+	  	This.onConnect();
 	}
 }
 
@@ -88,5 +93,6 @@ function _Server_displayer(_key) {
 		if (_data.connectionStatus != "OK") return false;
 		This.key = _key;
 	  	This.enabled = true;
+	  	This.onConnect();
 	}
 }

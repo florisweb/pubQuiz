@@ -163,6 +163,18 @@ let teams = [
 			name: "team C",
 			scoreChange: 1,
 			score: 4,
+		},
+		{
+			name: "team D",
+			score: 5,
+		},
+		{
+			name: "team E",
+			score: 38,
+		},
+		{
+			name: "team F",
+			score: 41,
 		}
 	],
 	[
@@ -346,8 +358,8 @@ function Page_scoreList() {
 		let html = 	document.createElement("div");
 		html.className = "listItem";
 		html.innerHTML ='<div class="text positionIndicator"></div>' + 
-						'<div class="text teamNameHolder"></div>' +
-						'<div class="text scoreHolder"></div>' +
+						'<div class="text titleHolder"></div>' +
+						'<div class="text statusHolder"></div>' +
 						'<div class="lineHolder"></div>';
 		
 		setTextToElement(html.children[0], parseInt(_team.position) + 1);

@@ -5,6 +5,46 @@
 // 	this.questionPage 	= new Page_questionPage();
 // }
 
+
+
+
+
+
+const Server = new _Server_controller();
+Server.onConnect = function() {document.title = "Displaykey: " + Server.key;}
+
+
+const Controller = new function() {
+
+	let HTML = {
+		questionListHolder: $(".questionListHolder")[0],
+	}
+
+
+
+
+	this.addListItem = function(_object) {
+		let html = 	document.createElement("div");
+		html.className = "listItem";
+		html.innerHTML ='<div class="text positionIndicator"></div>' + 
+						'<div class="text titleHolder"></div>' +
+						'<div class="text statusHolder"></div>' +
+						'<div class="lineHolder"></div>';
+
+		setTextToElement(html.children[0], _object.indicator);
+		setTextToElement(html.children[1], _object.title);
+
+		
+		html.children[2].style.background = _object.flagColour;
+		setTextToElement(html.children[2], _object.flagText);
+
+		HTML.questionListHolder.append(html);
+	}
+}
+
+
+
+
 let catagories = [
 	{name: "Algemene kennis", color: "#11B1B2"},
 	{name: "Aardrijkskunde", color: "#08f7a8"},

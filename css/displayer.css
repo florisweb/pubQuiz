@@ -1,3 +1,4 @@
+/*Top 3 score page*/
 
 .contentPage .scoreBar {
 	position: relative;
@@ -90,21 +91,24 @@
 
 
 
-body {
-	position: fixed;
-	top: 0;
-	left: 0;
-
-	margin: 0;
-
-	width: 100vw;
-	height: 100vh;
-	opacity: .9;
-	background: #eee;
-	transition: all .3s;
-}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Questionpage*/
 
 .contentPage .catagoryHolder {
 	position: relative;
@@ -195,6 +199,21 @@ body {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Score list page*/
+
 .scoreListHolder {
 	position: relative;
 	margin: auto;
@@ -208,36 +227,6 @@ body {
 }
 
 
-
-
-.scoreListHolder .listItem {
-	position: relative;
-	/*margin-bottom: 10px;*/
-	
-	width: calc(100% - 5px * 2);
-	height: 30px;
-
-	padding: 12px 5px;
-
-	text-align: left;
-	border-radius: 5px;
-}
-
-.scoreListHolder .listItem .lineHolder {
-	position: absolute;
-	
-	top: calc(30px + 12px + 10px);
-
-	left: 60px;
-	width: calc(100% - 40px - 20px * 2);
-	height: 2px;
-
-	background: #eee;
-}
-
-.scoreListHolder .listItem:last-child .lineHolder {
-	display: none;
-}
 
 .scoreListHolder .listItem .text {
 	font-size: 16px !important;
@@ -253,27 +242,6 @@ body {
 }
 
 
-	.listItem .positionIndicator {
-		position: relative;
-		float: left;
-
-		height: 25px;
-		width: 25px;
-		
-		background-size: 30% auto;
-		background-position: 50% 10%;
-		background-repeat: no-repeat;
-
-
-		padding: 5px;
-		top: -2.5px;
-		margin: 0 10px;
-		background: rgba(0, 0, 0, .8);
-		border-radius: 5px;
-
-		text-align: center;
-		line-height: 25px;
-	}
 
 	.listItem:nth-child(1) .positionIndicator {
 		background-image: url("../images/trophyGold.png"); 
@@ -301,38 +269,10 @@ body {
 
 
 
-	.listItem .teamNameHolder {
-		position: relative;
-		float: left;
-		width: calc(100% - 70px - 60px);
-
-		height: 20px;
-
-		line-height: 30px;
-	}
-
-
-	.listItem .scoreHolder.text {
-		position: relative;
-		float: left;
-		
-		width: 60px;
-		height: 30px;
-
-		font-size: 16px !important;
-		line-height: 30px;
-		text-align: center;
-
-		color: #fff;
-
-		background: rgba(0, 0, 0, .4);
-		border-radius: 5px;
-	}
-
-	.listItem.scoreUp .scoreHolder.text {
+	.listItem.scoreUp .statusHolder.text {
 		background: rgba(0, 255, 0, .5);
 	}
-	.listItem.scoreDown .scoreHolder.text {
+	.listItem.scoreDown .statusHolder.text {
 		background: rgba(255, 0, 0, .5);
 	}
 
