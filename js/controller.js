@@ -46,8 +46,12 @@ function Controller_questionHolder() {
 	let HTML = {
 		questionListHolder: $(".questionListHolder")[0],
 	}
+	this.questions = [];
 
-	this.addQuestionList = function(_questionList) {
+	this.setQuestionList = function(_questionList) {
+		this.questions = [];
+		HTML.questionListHolder.innerHTML = "";
+
 		for (let i = 0; i < _questionList.length; i++)
 		{
 			this.addQuestion(_questionList[i], i + 1);
@@ -55,13 +59,37 @@ function Controller_questionHolder() {
 	}
 
 	this.addQuestion = function(_question, _index = 0) {
-		Controller.addListItem(
+		let html = Controller.addListItem(
 		{
 			title: _question.question,
 			indicator: _index,
 			flagColor: _question.catagory.color,
 			flagText: _question.catagory.name
 		}, HTML.questionListHolder);
+		
+		this.questions.push(new _questionObject(
+			_question,
+			html
+		));
+	}
+
+	function _questionObject(_question, _html) {
+		this.question = _question;
+		let This = this;
+		const HTML = {
+			Self: _html
+		}
+
+		HTML.Self.onclick = function() {
+			This.displayOnDisplayerScreen();
+		}
+
+		this.displayOnDisplayerScreen = function() {
+			Server.send(JSON.stringify({
+				action: "showQuestion",
+				question: this.question
+			}));
+		}
 	}
 }
 
@@ -73,7 +101,8 @@ function Controller_teamHolder() {
 		teamListHolder: $(".teamListHolder")[0],
 	}
 
-	this.addTeamList = function(_teamList) {
+	this.setTeamList = function(_teamList) {
+		HTML.teamListHolder.innerHTML = "";
 		for (let i = 0; i < _teamList.length; i++)
 		{
 			this.addTeam(_teamList[i], i + 1);
@@ -283,8 +312,8 @@ let teams = [
 
 
 
-Controller.teamHolder.addTeamList(teams[0])
-Controller.questionHolder.addQuestionList(questions);
+Controller.teamHolder.setTeamList(teams[0])
+Controller.questionHolder.setQuestionList(questions);
 
 
 // let index = 0;

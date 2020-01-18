@@ -71,6 +71,8 @@ wsServer.on('request', function(request) {
 
         if (!Client.enabled) return Client.enable(clientData);
         if (Client.type != "controller" || !Client.screenClients.length) return;
+
+        console.log("[Controller " + Client.id + "] send: " + JSON.stringify(clientData));
         
         for (client of Client.screenClients) client.send(JSON.stringify(clientData));
     });
