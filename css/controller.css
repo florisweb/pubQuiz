@@ -1,0 +1,25 @@
+
+
+
+.listItem .statusHolder {
+	/*opacity: .6;*/
+	box-shadow: -5px 0 30px 20px #eee;
+}
+
+
+
+.questionListHolder {
+	position: absolute;
+	margin: 2.5%;
+	width: 45%;
+}
+
+
+
+.teamListHolder {
+	position: absolute;
+	float: right;
+	right: 0;
+	margin: 2.5%;
+	width: 45%;
+}

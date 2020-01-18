@@ -35,6 +35,7 @@
 
 			<div class="contentPage">
 				<div class="whiteBox questionListHolder"></div>
+				<div class="whiteBox teamListHolder"></div>
 			</div>
 			
 			<div class="contentPage hide">

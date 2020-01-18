@@ -15,15 +15,12 @@ Server.onConnect = function() {document.title = "Displaykey: " + Server.key;}
 
 
 const Controller = new function() {
+	this.questionHolder = new Controller_questionHolder();
+	this.teamHolder = new Controller_teamHolder();
 
-	let HTML = {
-		questionListHolder: $(".questionListHolder")[0],
-	}
+	
 
-
-
-
-	this.addListItem = function(_object) {
+	this.addListItem = function(_object, _listHolder) {
 		let html = 	document.createElement("div");
 		html.className = "listItem";
 		html.innerHTML ='<div class="text positionIndicator"></div>' + 
@@ -35,12 +32,69 @@ const Controller = new function() {
 		setTextToElement(html.children[1], _object.title);
 
 		
-		html.children[2].style.background = _object.flagColour;
+		html.children[2].style.background = _object.flagColor;
 		setTextToElement(html.children[2], _object.flagText);
 
-		HTML.questionListHolder.append(html);
+		_listHolder.append(html);
+		return html;
 	}
 }
+
+
+
+function Controller_questionHolder() {
+	let HTML = {
+		questionListHolder: $(".questionListHolder")[0],
+	}
+
+	this.addQuestionList = function(_questionList) {
+		for (let i = 0; i < _questionList.length; i++)
+		{
+			this.addQuestion(_questionList[i], i + 1);
+		}
+	}
+
+	this.addQuestion = function(_question, _index = 0) {
+		Controller.addListItem(
+		{
+			title: _question.question,
+			indicator: _index,
+			flagColor: _question.catagory.color,
+			flagText: _question.catagory.name
+		}, HTML.questionListHolder);
+	}
+}
+
+
+
+
+function Controller_teamHolder() {
+	let HTML = {
+		teamListHolder: $(".teamListHolder")[0],
+	}
+
+	this.addTeamList = function(_teamList) {
+		for (let i = 0; i < _teamList.length; i++)
+		{
+			this.addTeam(_teamList[i], i + 1);
+		}
+	}
+
+	this.addTeam = function(_team, _index = 0) {
+		Controller.addListItem(
+		{
+			title: _team.name,
+			indicator: _index,
+			flagColor: "rgb(148, 148, 148)",
+			flagText: _team.score,
+		}, HTML.teamListHolder);
+	}
+}
+
+
+
+
+
 
 
 
@@ -223,6 +277,14 @@ let teams = [
 		}
 	],
 ]; 
+
+
+
+
+
+
+Controller.teamHolder.addTeamList(teams[0])
+Controller.questionHolder.addQuestionList(questions);
 
 
 // let index = 0;
