@@ -139,6 +139,7 @@ function Page_scoreBoard() {
 		
 		let percentage = mapValue(_percentage, 0, 1, min, max);
 		_scoreBar.style.top = (1 - percentage) * 100 + "%";
+		_scoreBar.style.height = percentage * 100 + "%";
 	}
 }
 
@@ -155,7 +156,7 @@ function Page_questionPage() {
 	const This = this;
 	_Page.call(this, {
 		name: "question",
-		index: 1,
+		index: 2,
 		onOpen: function(_question) {
 			This.showQuestion(_question);
 		}

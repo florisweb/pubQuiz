@@ -66,8 +66,9 @@ html {
 
 
 #mainContentHolder {
-	height: calc(100vh - 30px * 2 - 10px * 2 * 2 - 30px);
+	height: 100vh;
 	text-align: center;
+	overflow: auto;
 }
 
 
@@ -77,13 +78,16 @@ html {
 	top: 0;
 
 	width: 100vw;
-	height: calc(100vh);
+	height: 100vh;
 	transition: all .3s;
+	overflow: show;
+	max-height: 1000vh;
 }
 
 #mainContentHolder .contentPage.hide {
 	opacity: 0;
 	transform: scale(.5);
+	max-height: 100vh;
 }
 
 
