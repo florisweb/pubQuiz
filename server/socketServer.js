@@ -1,31 +1,82 @@
 #!/usr/bin/env node
-var WebSocketServer = require('websocket').server;
-var http = require('http');
- 
-var server = http.createServer(function(request, response) {
-    console.log((new Date()) + ' Received request for ' + request.url);
-    response.writeHead(404);
-    response.end();
-});
-server.listen(8080, function() {
-    console.log((new Date()) + ' Server is listening on port 8080');
-});
- 
-wsServer = new WebSocketServer({
-    httpServer: server,
-    // You should not use autoAcceptConnections for production
-    // applications, as it defeats all standard cross-origin protection
-    // facilities built into the protocol and the browser.  You should
-    // *always* verify the connection's origin and decide whether or not
-    // to accept it.
-    autoAcceptConnections: false
-});
- 
+
+const WebSocket = require('ws');
+const fs = require('fs');
+const https = require('https');
+
+
+
+
+
+
+const DOMAIN = "pubquiz.ga";
+const PORT = 8080;
+
+const sshKeys = {
+    key:    fs.readFileSync("/etc/letsencrypt/archive/" + DOMAIN + "/privkey1.pem"),
+    cert:   fs.readFileSync("/etc/letsencrypt/archive/" + DOMAIN + "/fullchain1.pem"),
+    ca:     fs.readFileSync("/etc/letsencrypt/archive/" + DOMAIN + "/chain1.pem")
+};
+
+
+
+
+
+
+var server = https.createServer(sshKeys);
+server.listen(PORT);
+var wss = new WebSocket.Server({server: server});
+
+
+
 function originIsAllowed(origin) {
-    let allowedOrigins = ["http://localhost", "http://192.168.178.23", "http://pubquiz.ga"];
+    let allowedOrigins = ["https://pubquiz.ga"];
     if (!allowedOrigins.includes(origin)) return false;
     return true;
 }
+
+
+wss.on('connection', function(ws, request, client) {// Web Socket
+    let protocol = request.headers["sec-websocket-protocol"];
+
+    if (!originIsAllowed(request.headers.origin) || protocol != "pubquiz-protocol") 
+    {
+      ws.close();
+      console.log('[Reject] Connection from origin ' + request.headers.origin + ' with protocol ' + protocol + ' rejected.');
+      return;
+    }
+
+    console.log('[Connect] Connection from origin ' + request.headers.origin + ' with protocol ' + protocol + ' allowed.');
+
+
+    
+    let Client = new _Client(ws);
+    Clients.push(Client);
+
+
+    Client.connection.on('message', function(_message) {
+        let clientData = JSON.parse(_message);
+
+        if (!Client.enabled) return Client.enable(clientData);
+        if (Client.type != "controller" || !Client.screenClients.length) return;
+
+        console.log("[Controller " + Client.id + "] send: " + JSON.stringify(clientData));
+        
+        for (client of Client.screenClients) client.send(JSON.stringify(clientData));
+    });
+
+    Client.connection.on('close', function(reasonCode, description) {
+        console.log('[Disconnect] Client ' + Client.id + " disconnected: " + reasonCode + " " + description);
+        Clients.removeClient(Client.id);
+    });
+});
+
+
+
+
+
+
+
 
 
 let Clients = [];
@@ -33,7 +84,8 @@ Clients.removeClient = function(_id) {
     for (let i = 0; i < this.length; i++)
     {
         if (this[i].id != _id) continue;
-        this.splice(i, 1);
+        let client = this.splice(i, 1);
+        if (client.connection) client.connection.close();
         return true;
     }
     return false;
@@ -49,41 +101,6 @@ Clients.findController = function(_key) {
     return false;
 }
 
-
-
- 
-wsServer.on('request', function(request) {
-    if (!originIsAllowed(request.origin)) {
-      // Make sure we only accept requests from an allowed origin
-      request.reject();
-      console.log((new Date()) + ' Connection from origin ' + request.origin + ' rejected.');
-      return;
-    }
-
-    var connection = request.accept('pubquiz-protocol', request.origin);
-    
-    let Client = new _Client(connection);
-    Clients.push(Client);
-
-    console.log((new Date()) + ' Connection accepted. From ' + request.origin);
-    Client.connection.on('message', function(message) {
-        if (message.type !== 'utf8') return Client.send(JSON.stringify({error: "This encoding is not supported."}));
-        let clientData = JSON.parse(message.utf8Data);
-
-        if (!Client.enabled) return Client.enable(clientData);
-        if (Client.type != "controller" || !Client.screenClients.length) return;
-
-        console.log("[Controller " + Client.id + "] send: " + JSON.stringify(clientData));
-        
-        for (client of Client.screenClients) client.send(JSON.stringify(clientData));
-    });
-
-    
-    Client.connection.on('close', function(reasonCode, description) {
-        console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
-        Clients.removeClient(Client.id);
-    });
-});
 
 
 
@@ -122,9 +139,17 @@ function _Client(_connection) {
     }
 
     this.send = function(_str) {
-        this.connection.sendUTF(_str);
+        this.connection.send(_str);
+    }
+
+    this.remove = function() {
+        Client.removeClient(this.id);
     }
 }
+
+
+
+
 
 
 function newId() {return parseInt(Math.round(Math.random() * 100000000) + "" + Math.round(Math.random() * 100000000));}

@@ -3,7 +3,7 @@ function _Server(_socketHandler) {
 	let This = this;
 	this.enabled = false;
 
-	let socket = new WebSocket("ws://192.168.178.23:8080/", "pubquiz-protocol");
+	let socket = new WebSocket("wss://pubquiz.ga:8080/", "pubquiz-protocol");
 	_socketHandler(socket);
 	
 	this.send = function (_str) {socket.send(_str)};
