@@ -36,6 +36,7 @@
 			<div class="contentPage">
 				<div class="whiteBox questionListHolder"></div>
 				<div class="whiteBox teamListHolder"></div>
+				<iframe class="whiteBox" id="displayerFrame" src=""></iframe>
 			</div>
 			
 			<div class="contentPage hide">
@@ -52,7 +53,7 @@
 		</div>
 
 
-		<script src="/JS/jQuery.js"></script>
+		<script src="js/jQuery.js"></script>
 		<script src="js/extraFunctions.js"></script>
 		<script src="js/server.js"></script>
 		<script src="js/controller.js"></script>

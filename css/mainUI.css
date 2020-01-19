@@ -114,6 +114,7 @@ body {
 	opacity: 0;
 	transform: scale(.5);
 	max-height: 100vh;
+	pointer-events: none;
 }
 
 

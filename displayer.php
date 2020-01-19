@@ -51,7 +51,7 @@
 		</div>
 
 
-		<script src="/JS/jQuery.js"></script>
+		<script src="js/jQuery.js"></script>
 		<script src="js/extraFunctions.js"></script>
 		<script src="js/displayer.js"></script>
 

@@ -11,7 +11,7 @@
 
 
 const Server = new _Server_controller();
-Server.onConnect = function() {document.title = "Displaykey: " + Server.key;}
+Server.onConnect = function() {document.title = "Displaykey: " + Server.key; displayerFrame.src = "displayer.php?key=" + Server.key;}
 
 
 const Controller = new function() {

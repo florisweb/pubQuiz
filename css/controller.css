@@ -23,3 +23,13 @@
 	margin: 2.5%;
 	width: 45%;
 }
+
+#displayerFrame {
+	position: absolute;
+	left: 0;
+	top: 50vh;
+	margin: 2.5%;
+	width: 45%;
+	height: 45vh;
+	border: none;
+}
