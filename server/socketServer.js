@@ -22,7 +22,8 @@ wsServer = new WebSocketServer({
 });
  
 function originIsAllowed(origin) {
-    if (origin != "http://localhost" && origin != "http://192.168.178.23") return false;
+    let allowedOrigins = ["http://localhost", "http://192.168.178.23", "http://pubquiz.ga"];
+    if (!allowedOrigins.includes(origin)) return false;
     return true;
 }
 
