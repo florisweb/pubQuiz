@@ -55,7 +55,7 @@ function _Server_controller() {
 		This.key = _data.key;
 	  	
 	  	This.enabled = true;
-	  	This.onConnect();
+	  	This.onConnect(_data);
 	}
 }
 
@@ -94,6 +94,6 @@ function _Server_displayer() {
 		if (_data.connectionStatus != "OK") return This.onConnectionError(_data);
 		This.key = _data.key;
 	  	This.enabled = true;
-	  	This.onConnect();
+	  	This.onConnect(_data);
 	}
 }

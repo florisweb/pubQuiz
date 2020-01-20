@@ -450,8 +450,9 @@ function Page_connectionPage() {
 		keyHolder: $(".connectionKeyHolder .inputField")[0],
 	}
 
-	Server.onConnect = function() {
-		Page.top3ScorePage.open();	
+	Server.onConnect = function(_data) {
+		Page.top3ScorePage.open();
+		changeurl("displayer.php?key=" + _data.key, "Pubquiz " + _data.key);
 	}
 
 	Server.onConnectionError = function(_data) {
@@ -469,7 +470,12 @@ function Page_connectionPage() {
 
 
 
-}
 
+	function changeurl(url, title) {
+	    var new_url = '/' + url;
+	    window.history.pushState('data', 'Title', new_url);
+	    document.title = title;
+	}
+}
 
 

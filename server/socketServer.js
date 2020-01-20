@@ -124,7 +124,7 @@ function _Client(_connection) {
                 this.controller = controller;
                 this.controller.screenClients.push(this);
 
-                this.send(JSON.stringify({connectionStatus: "OK", key: this.key}));
+                this.send(JSON.stringify({connectionStatus: "OK", key: this.controller.key}));
                 this.controller.send(JSON.stringify({message: "A displayer connected", id: this.id}));
             break;
             case "controller": 
