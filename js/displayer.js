@@ -49,6 +49,7 @@ function Page_top3Score() {
 		index: 0,
 		onOpen: function(_team) {
 			HTML.body.style.background = "";
+			if (!_team) return;
 			This.setScoresByTeam(_team);
 		}
 	});
@@ -335,7 +336,6 @@ function Page_scoreList() {
 		index: 1,
 		onOpen: function(_team) {
 			HTML.body.style.background = "";
-			
 		}
 	});
 
@@ -379,7 +379,6 @@ function Page_scoreList() {
 
 		HTML.scoreListHolder.append(html);
 	}
-
 }	
 
 
@@ -396,6 +395,7 @@ function Page_questionPage() {
 		name: "question",
 		index: 2,
 		onOpen: function(_question) {
+			if (!_question) return;
 			This.showQuestion(_question);
 		}
 	});
