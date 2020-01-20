@@ -1,28 +1,59 @@
 
 
 
+.listItem {
+	overflow: hidden;
+	z-index: 1;
+}
+
 .listItem .statusHolder {
 	/*opacity: .6;*/
 	box-shadow: -5px 0 30px 20px #eee;
 }
+
+.listItem.selected {
+	box-shadow: -5px 0 30px 20px #eee;
+	z-index: 0;
+	border-left: 5px solid #f00;
+	margin-left: -5px;
+	border-radius: 0;
+}
+
+.listItem.selected .positionIndicator {
+	background-image: url("../images/screenIcon.png"); 
+	background-size: 60% auto;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	color: transparent !important;
+}
+
 
 
 
 .questionListHolder {
 	position: absolute;
 	margin: 2.5%;
+	margin-top: 0;
 	width: 45%;
 }
-
-
 
 .teamListHolder {
 	position: absolute;
 	float: right;
 	right: 0;
 	margin: 2.5%;
+	margin-top: 0;
 	width: 45%;
 }
+
+.infoBar {
+	margin: 1% 2.5%;
+	height: 30px;
+	width: 45%;
+}
+
+
+
 
 #displayerFrame {
 	position: absolute;
@@ -32,4 +63,5 @@
 	width: 45%;
 	height: 45vh;
 	border: none;
+	border-radius: 10px;
 }

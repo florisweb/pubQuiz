@@ -34,6 +34,10 @@
 			</div>
 
 			<div class="contentPage">
+				<div class="whiteBox infoBar">
+					<div class="text">2 screens connected</div>
+					<div class="text">Key: 13342</div>
+				</div>
 				<div class="whiteBox questionListHolder"></div>
 				<div class="whiteBox teamListHolder"></div>
 				<iframe class="whiteBox" id="displayerFrame" src=""></iframe>

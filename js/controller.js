@@ -47,6 +47,7 @@ function Controller_questionHolder() {
 		questionListHolder: $(".questionListHolder")[0],
 	}
 	this.questions = [];
+	this.selectedQuestion = false;
 
 	this.setQuestionList = function(_questionList) {
 		this.questions = [];
@@ -82,6 +83,10 @@ function Controller_questionHolder() {
 
 		HTML.Self.onclick = function() {
 			This.displayOnDisplayerScreen();
+			HTML.Self.classList.add("selected");
+			
+			if (Controller.questionHolder.selectedQuestion) Controller.questionHolder.selectedQuestion.deselect();
+			Controller.questionHolder.selectedQuestion = This;
 		}
 
 		this.displayOnDisplayerScreen = function() {
@@ -90,8 +95,14 @@ function Controller_questionHolder() {
 				question: this.question
 			}));
 		}
+		
+		this.deselect = function() {
+			HTML.Self.classList.remove("selected");
+		};
 	}
 }
+
+
 
 
 
