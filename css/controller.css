@@ -4,6 +4,7 @@
 .listItem {
 	overflow: hidden;
 	z-index: 1;
+	transition: all .3s, transform .1s;
 }
 
 .listItem .statusHolder {
@@ -12,19 +13,26 @@
 }
 
 .listItem.selected {
-	box-shadow: -5px 0 30px 20px #eee;
+	box-shadow: -5px 0 30px 20px rgba(0, 0, 0, .05);
 	z-index: 0;
-	border-left: 5px solid #f00;
-	margin-left: -5px;
-	border-radius: 0;
+}
+
+
+.listItem .positionIndicator {
+	background-size: 0% auto;
+	
+	transition: color .3s, background-size .2s, background;
 }
 
 .listItem.selected .positionIndicator {
+	background: #05a;
 	background-image: url("../images/screenIcon.png"); 
 	background-size: 60% auto;
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
+
 	color: transparent !important;
+
 }
 
 
@@ -35,6 +43,7 @@
 	margin: 2.5%;
 	margin-top: 0;
 	width: 45%;
+	overflow: hidden;
 }
 
 .teamListHolder {
