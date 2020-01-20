@@ -72,12 +72,12 @@
 				echo (int)$_GET["key"];
 			?>);
 
+			Page.connectionPage.open();
 			if (displayKey)
 			{
 				$(".connectionKeyHolder .inputField")[0].value = displayKey;
 				setTimeout(function () {Page.connectionPage.attemptToConnect();}, 500);
 			}
-
 		</script>
 
 	</body>

@@ -443,6 +443,7 @@ function Page_connectionPage() {
 		index: 3,
 		onOpen: function(_question) {
 			HTML.keyHolder.value = null;
+			HTML.keyHolder.focus();
 		}
 	});
 
@@ -458,6 +459,7 @@ function Page_connectionPage() {
 	Server.onConnectionError = function(_data) {
 		let error = _data.error;
 		alert(error);
+		HTML.keyHolder.focus();
 	}
 
 
