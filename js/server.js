@@ -22,9 +22,8 @@ function _Server(_socketHandler) {
 	  console.log(`[error] ${error.message}`);
 	};
 
-	this.onConnect = function() {
-		console.log("[Connected]");
-	}
+	this.onConnect = function() {console.log("[Connected]");}
+	this.onConnectionError = function() {console.log("[Error]");}
 
 	return This;
 }
@@ -52,7 +51,7 @@ function _Server_controller() {
 
 
 	function enableController(_data) {
-		if (_data.connectionStatus != "OK") return false;
+		if (_data.connectionStatus != "OK") return This.onConnectionError(_data);
 		This.key = _data.key;
 	  	
 	  	This.enabled = true;
@@ -62,17 +61,19 @@ function _Server_controller() {
 
 
 
-function _Server_displayer(_key) {
+function _Server_displayer() {
 	let This = this;
 	let socket;
 	_Server.call(this, function (_socket) {socket = _socket});
 
 	this.type = "displayer";
 
+	this.register = function(_key) {
+		socket.send(JSON.stringify({type: "displayer", key: parseInt(_key)}));
+	}
 
 	socket.onopen = function(e) {
 	  	console.log("[open] Connection established");
-		socket.send(JSON.stringify({type: "displayer", key: parseInt(_key)}));
 	};
 
 	socket.onmessage = function(event) {
@@ -90,8 +91,8 @@ function _Server_displayer(_key) {
 
 
 	function enableDisplayer(_data) {
-		if (_data.connectionStatus != "OK") return false;
-		This.key = _key;
+		if (_data.connectionStatus != "OK") return This.onConnectionError(_data);
+		This.key = _data.key;
 	  	This.enabled = true;
 	  	This.onConnect();
 	}

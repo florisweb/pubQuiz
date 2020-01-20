@@ -30,7 +30,7 @@ var wss = new WebSocket.Server({server: server});
 
 
 function originIsAllowed(origin) {
-    let allowedOrigins = ["https://pubquiz.ga"];
+    let allowedOrigins = ["https://pubquiz.ga", "http://localhost"];
     if (!allowedOrigins.includes(origin)) return false;
     return true;
 }
@@ -124,7 +124,7 @@ function _Client(_connection) {
                 this.controller = controller;
                 this.controller.screenClients.push(this);
 
-                this.send(JSON.stringify({connectionStatus: "OK", x: controller.id}));
+                this.send(JSON.stringify({connectionStatus: "OK", key: this.key}));
                 this.controller.send(JSON.stringify({message: "A displayer connected", id: this.id}));
             break;
             case "controller": 

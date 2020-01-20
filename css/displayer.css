@@ -1,3 +1,11 @@
+body {
+	background: rgba(255, 180, 0, .9);
+}
+
+
+
+
+
 /*Top 3 score page*/
 
 .contentPage .scoreBar {
@@ -263,6 +271,51 @@
 	.listItem.scoreDown .statusHolder.text {
 		background: rgba(255, 0, 0, .5);
 	}
+
+
+
+
+
+
+
+
+
+/*connectpage*/
+
+.contentPage .connectionKeyHolder {
+	position: relative;
+	margin: auto;
+	top: calc(50% - 50px);
+	transform: translateY(-50%);
+
+	width: 280px;
+	height: 80px;
+	padding: 10px;
+}
+
+.connectionKeyHolder .inputField {
+	position: relative;
+	
+	width: calc(100% - 20px);
+	
+	color: #666;
+	font-size: 20px;
+	text-align: center;
+	font-weight: bolder;
+}
+
+.connectionKeyHolder .button {
+	position: relative;
+	margin: auto;
+	width: 60px;
+}
+
+
+
+
+
+
+
 
 
 

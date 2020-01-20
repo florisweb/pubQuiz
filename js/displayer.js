@@ -1,9 +1,14 @@
+const Server = new _Server_displayer();
+
+
 const Page = new function() {
 
-	this.curPage 		= this.questionPage;
+	this.curPage 		= this.connectionPage;
 	this.top3ScorePage 	= new Page_top3Score();
 	this.scoreListPage 	= new Page_scoreList();
 	this.questionPage 	= new Page_questionPage();
+
+	this.connectionPage = new Page_connectionPage();
 }
 
 
@@ -425,3 +430,46 @@ function Page_questionPage() {
 		setTextToElement(HTML.catagoryHolder, _catagory.name);
 	}
 }
+
+
+
+
+
+
+function Page_connectionPage() {
+	const This = this;
+	_Page.call(this, {
+		name: "connect",
+		index: 3,
+		onOpen: function(_question) {
+			HTML.keyHolder.value = null;
+		}
+	});
+
+	const HTML = {
+		keyHolder: $(".connectionKeyHolder .inputField")[0],
+	}
+
+	Server.onConnect = function() {
+		Page.top3ScorePage.open();	
+	}
+
+	Server.onConnectionError = function(_data) {
+		let error = _data.error;
+		alert(error);
+	}
+
+
+
+	this.attemptToConnect = function() {
+		let key = parseInt(HTML.keyHolder.value);
+
+		Server.register(key);
+	}
+
+
+
+}
+
+
+

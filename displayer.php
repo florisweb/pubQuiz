@@ -33,7 +33,7 @@
 				</div>
 			</div>
 
-			<div class="contentPage">
+			<div class="contentPage hide">
 				<div class="whiteBox scoreListHolder"></div>
 			</div>
 			
@@ -48,22 +48,36 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="contentPage">
+				<div class="whiteBox connectionKeyHolder">
+					<input class="inputField text" placeholder="Displaykey" maxlength="5">
+					<br>
+					<div class="text button bDefault" onclick="Page.connectionPage.attemptToConnect()">Next</div>
+				</div>
+				
+			</div>
 		</div>
 
 
 		<script src="js/jQuery.js"></script>
 		<script src="js/extraFunctions.js"></script>
-		<script src="js/displayer.js"></script>
-
 		<script src="js/server.js"></script>
 
+		<script src="js/displayer.js"></script>
+		
+
 		<script>
-			let displayKey = (
-			<?php
+			let displayKey = (<?php
 				echo (int)$_GET["key"];
 			?>);
 
-			const Server = new _Server_displayer(displayKey);
+			if (displayKey)
+			{
+				$(".connectionKeyHolder .inputField")[0].value = displayKey;
+				setTimeout(function () {Page.connectionPage.attemptToConnect();}, 500);
+			}
+
 		</script>
 
 	</body>
