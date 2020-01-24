@@ -453,7 +453,7 @@ function Page_connectionPage() {
 
 	Server.onConnect = function(_data) {
 		Page.top3ScorePage.open();
-		changeurl("displayer.php?key=" + _data.key, "Pubquiz " + _data.key);
+		changeurl("/?key=" + _data.key, "Pubquiz " + _data.key);
 	}
 
 	Server.onConnectionError = function(_data) {
