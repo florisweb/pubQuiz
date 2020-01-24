@@ -150,7 +150,7 @@ body {
 	position: relative;
 	
 	margin: auto;
-	top: 40%;
+	top: calc(50vh - 70px);
 	transform: translateY(-50%);
 
 	width: auto;
@@ -162,7 +162,7 @@ body {
 	
 	padding: 25px;
 
-	font-size: 40px;
+	font-size: calc(7vh);
 	color: #666;
 
 	transition: all .3s;
