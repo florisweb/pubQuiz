@@ -126,8 +126,14 @@ function Controller_teamHolder() {
 	this.teams.commitScores = function() {
 		for (team of this) 
 		{
-			if (!team.newScore) continue;
-			team.score = team.newScore; 
+			if (!team.newScore)
+			{
+				team.scoreChange = 0;
+				continue;
+			}
+
+			team.scoreChange 	= team.newScore - team.score;
+			team.score 			= team.newScore; 
 			delete team.newScore;
 		}
 		this.sort(function (a, b) {

@@ -109,8 +109,8 @@ function _Server_displayer() {
 		switch (data.action)
 		{
 			case "showQuestion": Page.questionPage.open(data.question); break;
-			case "showTop3Scores": Page.scorePage.open(data.scores); break;
-			case "showScoreList": Page.scorePage.open(data.scores); break;
+			case "showTop3Scores": Page.top3ScorePage.open(data.scores); break;
+			case "showScoreList": Page.scoreListPage.open(data.scores); break;
 			default: console.warn("Action " + data.action + " doesn't exist"); break;
 		}
 	};
