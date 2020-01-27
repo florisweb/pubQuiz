@@ -36,6 +36,29 @@ function _Server_controller() {
 
 	this.type = "controller";
 
+	this.showQuestion = function(_question) {
+		this.send(JSON.stringify({
+			action: "showQuestion",
+			question: _question
+		}));
+	}
+
+	this.showTop3Scores = function() {
+		Controller.teamHolder.commitScores()
+		this.send(JSON.stringify({
+			action: "showTop3Scores",
+			scores: Controller.teamHolder.teams
+		}));
+	}
+
+	this.showScoreList = function() {
+		Controller.teamHolder.commitScores()
+		this.send(JSON.stringify({
+			action: "showScoreList",
+			scores: Controller.teamHolder.teams
+		}));
+	}
+
 
 
 	socket.onopen = function(e) {
@@ -58,6 +81,8 @@ function _Server_controller() {
 	  	This.onConnect(_data);
 	}
 }
+
+
 
 
 
@@ -84,7 +109,8 @@ function _Server_displayer() {
 		switch (data.action)
 		{
 			case "showQuestion": Page.questionPage.open(data.question); break;
-			case "showScore": Page.scorePage.open(data.scores); break;
+			case "showTop3Scores": Page.scorePage.open(data.scores); break;
+			case "showScoreList": Page.scorePage.open(data.scores); break;
 			default: console.warn("Action " + data.action + " doesn't exist"); break;
 		}
 	};

@@ -32,8 +32,11 @@
 	background-repeat: no-repeat;
 
 	color: transparent !important;
-
 }
+
+
+
+
 
 
 
@@ -46,20 +49,34 @@
 	overflow: hidden;
 }
 
-.teamListHolder {
-	position: absolute;
-	float: right;
-	right: 0;
-	margin: 2.5%;
-	margin-top: 0;
-	width: 45%;
-}
+
+
+
+
 
 .infoBar {
 	margin: 1% 2.5%;
-	height: 30px;
-	width: 45%;
+	height: 50px;
+	width: 95%;
 }
+
+	.infoBar .infoHalf {
+		position: relative;
+		float: left;
+		width: 47.5%;
+	}
+
+	.infoBar .infoHalf:nth-child(2) {
+		margin-left: 5%;
+	}
+
+
+
+
+
+
+
+
 
 
 
@@ -74,3 +91,54 @@
 	border: none;
 	border-radius: 10px;
 }
+
+
+
+
+
+
+
+
+
+
+.teamListHolder {
+	position: absolute;
+	float: right;
+	right: 0;
+	margin: 2.5%;
+	margin-top: 0;
+	width: 45%;
+}
+
+
+
+
+
+.teamListHolder .listItem .statusHolder .scoreEditingInput {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 50px;
+
+	background: none;
+	border: none;
+
+	color: #fff;
+	text-align: center;
+	pointer-events: none;
+}
+
+.teamListHolder .listItem .statusHolder.scoreUp {
+	background: rgba(0, 200, 0, .5) !important;
+}
+.teamListHolder .listItem .statusHolder.scoreDown {
+	background: rgba(255, 0, 0, .5) !important;
+}
+
+
+
+
+
+
+
+

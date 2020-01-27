@@ -17,7 +17,6 @@ Server.onConnect = function() {document.title = "Displaykey: " + Server.key; dis
 const Controller = new function() {
 	this.questionHolder = new Controller_questionHolder();
 	this.teamHolder = new Controller_teamHolder();
-
 	
 
 	this.addListItem = function(_object, _listHolder) {
@@ -90,10 +89,7 @@ function Controller_questionHolder() {
 		}
 
 		this.displayOnDisplayerScreen = function() {
-			Server.send(JSON.stringify({
-				action: "showQuestion",
-				question: this.question
-			}));
+			Server.showQuestion(this.question);
 		}
 		
 		this.deselect = function() {
@@ -112,22 +108,106 @@ function Controller_teamHolder() {
 		teamListHolder: $(".teamListHolder")[0],
 	}
 
+	this.teams = [
+		{
+			name: "team A",
+			score: 3,
+		},
+		{
+			name: "team B",
+			score: 7,
+		},
+		{
+			name: "team C",
+			score: 4,
+		}
+	];
+
+	this.teams.commitScores = function() {
+		for (team of this) 
+		{
+			if (!team.newScore) continue;
+			team.score = team.newScore; 
+			delete team.newScore;
+		}
+		this.sort(function (a, b) {
+			if (a.score > b.score) return -1; 
+			return 1;
+		});
+	}
+
+
+	this.commitScores = function() {
+		this.teams.commitScores();
+		this.setTeamList(this.teams);
+	}
+
+
 	this.setTeamList = function(_teamList) {
 		HTML.teamListHolder.innerHTML = "";
 		for (let i = 0; i < _teamList.length; i++)
 		{
-			this.addTeam(_teamList[i], i + 1);
+			this.addTeam(_teamList[i]);
 		}
 	}
 
-	this.addTeam = function(_team, _index = 0) {
-		Controller.addListItem(
-		{
-			title: _team.name,
-			indicator: _index,
-			flagColor: "rgb(148, 148, 148)",
-			flagText: _team.score,
-		}, HTML.teamListHolder);
+	this.addTeam = function(_team) {
+		let team = new _Team(_team);
+	}
+
+
+
+	function _Team(_team) {
+		let This = this;
+		let teamHTML = {
+			Self: Controller.addListItem(
+			{
+				title: _team.name,
+				indicator: HTML.teamListHolder.children.length + 1,
+				flagColor: "rgb(148, 148, 148)",
+				flagText: false,
+			}, HTML.teamListHolder)
+		}
+		this.team = _team;
+		
+
+		teamHTML.Self.children[2].innerHTML = "<input class='scoreEditingInput text'>";
+		teamHTML.scoreHolder				= teamHTML.Self.children[2];
+		teamHTML.inputField 				= teamHTML.scoreHolder.children[0];
+		teamHTML.inputField.value 			= _team.score;
+		teamHTML.scoreHolder.onclick 		= function () {This.openScoreEditMode()}
+		teamHTML.inputField.onfocus 		= teamHTML.scoreHolder.onclick;
+		teamHTML.inputField.onblur		 	= function () {This.updateScore()}
+
+
+
+		this.openScoreEditMode = function() {
+			teamHTML.inputField.value = this.team.score;
+			teamHTML.inputField.select();
+		}
+
+
+		this.updateScore = function() {
+			let newScore 		= parseInt(teamHTML.inputField.value);
+			let dScore 			= newScore - this.team.score;
+			this.team.newScore 	= newScore;
+
+			teamHTML.scoreHolder.classList.remove("scoreUp");
+			teamHTML.scoreHolder.classList.remove("scoreDown");
+
+			let newScoreText = this.team.newScore;
+			if (dScore > 0)
+			{
+				newScoreText += "  ▲" + dScore;
+				teamHTML.scoreHolder.classList.add("scoreUp");
+				
+			} else if (dScore < 0) {
+				newScoreText += "  ▼" + -dScore;
+				teamHTML.scoreHolder.classList.add("scoreDown");
+			}
+
+			teamHTML.inputField.value = newScoreText;
+		}
 	}
 }
 
@@ -160,170 +240,11 @@ let questions = [
 ];
 
 
-let teams = [
-	[
-		{
-			name: "team A",
-			score: 3,
-		},
-		{
-			name: "team B",
-			score: 7,
-		},
-		{
-			name: "team C",
-			score: 4,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 7,
-		},
-		{
-			name: "team B",
-			score: 9,
-		},
-		{
-			name: "team C",
-			score: 8,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 10,
-		},
-		{
-			name: "team B",
-			score: 11,
-		},
-		{
-			name: "team C",
-			score: 9,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 12,
-		},
-		{
-			name: "team B",
-			score: 13,
-		},
-		{
-			name: "team C",
-			score: 10,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 13,
-		},
-		{
-			name: "team B",
-			score: 15,
-		},
-		{
-			name: "team C",
-			score: 11,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 15,
-		},
-		{
-			name: "team B",
-			score: 16,
-		},
-		{
-			name: "team C",
-			score: 15,
-		}
-	],
-
-	[
-		{
-			name: "team A",
-			score: 16,
-		},
-		{
-			name: "team B",
-			score: 19,
-		},
-		{
-			name: "team C",
-			score: 17,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 19,
-		},
-		{
-			name: "team B",
-			score: 20,
-		},
-		{
-			name: "team C",
-			score: 21,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 23,
-		},
-		{
-			name: "team B",
-			score: 27,
-		},
-		{
-			name: "team C",
-			score: 28,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 28,
-		},
-		{
-			name: "team B",
-			score: 31,
-		},
-		{
-			name: "team C",
-			score: 35,
-		}
-	],
-	[
-		{
-			name: "team A",
-			score: 34,
-		},
-		{
-			name: "team B",
-			score: 38,
-		},
-		{
-			name: "team C",
-			score: 41,
-		}
-	],
-]; 
 
 
 
 
-
-
-Controller.teamHolder.setTeamList(teams[0])
+Controller.teamHolder.setTeamList(Controller.teamHolder.teams);
 Controller.questionHolder.setQuestionList(questions);
 
 
