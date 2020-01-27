@@ -171,10 +171,16 @@ function Page_scoreList() {
 		body: document.body
 	}
 
+
+	let lastScoreList = [];
 	this.setScoreListByTeams = function(_teams) {
+		_teams = setScoreChanges(_teams, lastScoreList);
 		HTML.scoreListHolder.innerHTML = "";
 		this.addListItemsByTeams(_teams);
+
+		lastScoreList = _teams;
 	}
+
 
 
 	this.addListItemsByTeams = function(_teams) {
@@ -206,8 +212,24 @@ function Page_scoreList() {
 
 		HTML.scoreListHolder.append(html);
 	}
-}	
 
+
+	function setScoreChanges(_newScores, _oldScores) {
+		let newScores = [];
+		for (newScore of _newScores)
+		{
+			for (oldScore of _oldScores)
+			{
+				if (newScore.name != oldScore.name) continue;
+				newScore.scoreChange = newScore.score - oldScore.score;
+				break;
+			}
+			newScores.push(newScore);
+		}
+
+		return newScores;
+	}
+}
 
 
 
