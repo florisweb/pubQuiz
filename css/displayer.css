@@ -150,7 +150,7 @@ body {
 	position: relative;
 	
 	margin: auto;
-	top: calc(50vh - 70px);
+	top: calc(50vh - 80px);
 	transform: translateY(-50%);
 
 	width: auto;
@@ -163,9 +163,14 @@ body {
 	padding: 25px;
 
 	font-size: calc(7vh);
-	color: #666;
+	color: #777;
 
 	transition: all .3s;
+}
+
+.contentPage.displayingImage #questionHolder {
+	transform: translateY(0%);
+	top: 80px;
 }
 
 #questionHolder.hide {
@@ -192,6 +197,40 @@ body {
 }
 
 
+#imageHolder {
+	position: relative;
+
+	top: 30vh;
+		
+	/*width: auto;*/
+	width: 30vw;
+	height: 40vh;
+	/*max-width: 40vw;*/
+	/*height: auto;*/
+	
+	display: inline-block;
+	
+	overflow: hidden;
+
+	background: #fff;
+	background-size: 70% auto;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+
+
+
+	transition: all .3s;
+}
+
+.contentPage:not(.displayingImage) #imageHolder {
+	animation: dropOut 0.6s 1;
+	animation-fill-mode: forwards;
+}
+
+.contentPage.displayingImage #imageHolder {
+	animation: dropIn 0.6s 1;
+	animation-fill-mode: forwards;
+}
 
 
 

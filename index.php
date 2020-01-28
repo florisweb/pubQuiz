@@ -46,6 +46,10 @@
 
 					<div class="text hide whiteBox" id="questionHolder">
 					</div>
+					<br>
+
+					<div class="whiteBox" id="imageHolder">
+					</div>
 				</div>
 			</div>
 

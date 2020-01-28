@@ -111,15 +111,35 @@ function Controller_teamHolder() {
 	this.teams = [
 		{
 			name: "team A",
-			score: 3,
+			score: 0,
 		},
 		{
 			name: "team B",
-			score: 7,
+			score: 0,
 		},
 		{
 			name: "team C",
-			score: 4,
+			score: 0,
+		},
+		{
+			name: "De Nieuwlandjes",
+			score: 0,
+		},
+		{
+			name: "Team Bolsons",
+			score: 0,
+		},
+		{
+			name: "Team Ellen?",
+			score: 0,
+		},
+		{
+			name: "Pos 1?",
+			score: 0,
+		},
+		{
+			name: "We are number one!",
+			score: 0,
 		}
 	];
 
@@ -237,6 +257,20 @@ let questions = [
 	{question: "Wat zijn de drie (ouderwetse) betekenissen van een Talent?", catagory: catagories[2]},
 	{question: "Tot welke taalgroep hoort het Roemeens?", catagory: catagories[3]},
 	{question: "Vraag over dracula?", catagory: catagories[3]},
+	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/1.gif"},
+	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/2.gif"},
+	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/3.jpg"},
+	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/4.jpeg"},
+	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/5.png"},
+	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/6.jpeg"},
+	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/7.png"},
+	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/8.jpeg"},
+	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/9.png"},
+	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/10.jpeg"},
+	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/11.png"},
+	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/12.gif"},
+	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/13.gif"},
+	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/14.gif"}
 ];
 
 
