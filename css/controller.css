@@ -46,7 +46,9 @@
 	margin: 2.5%;
 	margin-top: 0;
 	width: 45%;
-	overflow: hidden;
+	max-height: 40%;
+
+	overflow: auto;
 }
 
 
