@@ -35,15 +35,22 @@
 
 			<div class="contentPage">
 				<div class="infoBar">
-					<div class="infoHalf">
+					<div class="infoHalf leftHalf">
+						<div class="text button clickable" style="width: 90px" onclick="Controller.questionHolder.showPreviousQuestion()">
+							ᐊ Previous
+						</div>
+						<div class="text button bDefault bBoxy clickable" style="width: 70px" onclick="Controller.questionHolder.showNextQuestion()">
+							Next ᐅ
+						</div>
 						<div class="text">2 screens connected</div>
+						<br>
 						<div class="text">Key: 13342</div>
+						<div class="text">Question 0/15</div>
 					</div>
 
 					<div class="whiteBox infoHalf">
 						<button onclick="Server.showTop3Scores();">Show top 3 scores</button>
 						<button onclick="Server.showScoreList();">Show scorelist</button>
-						<div class="text">Key: 13342</div>
 					</div>
 				</div>
 

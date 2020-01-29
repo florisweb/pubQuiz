@@ -11,7 +11,8 @@
 
 
 const Server = new _Server_controller();
-Server.onConnect = function() {document.title = "Displaykey: " + Server.key; displayerFrame.src = "/?key=" + Server.key;}
+// Server.onConnect = function() {document.title = "Displaykey: " + Server.key; displayerFrame.src = "/?key=" + Server.key;}
+Server.onConnect = function() {document.title = "Displaykey: " + Server.key; displayerFrame.src = ".?key=" + Server.key;}
 
 
 const Controller = new function() {
@@ -48,6 +49,22 @@ function Controller_questionHolder() {
 	this.questions = [];
 	this.selectedQuestion = false;
 
+	this.showNextQuestion = function() {
+		let curQuestionIndex = this.selectedQuestion ? this.selectedQuestion.index + 1 : 0;
+		if (curQuestionIndex >= this.questions.length) return;
+
+		this.questions[curQuestionIndex].select();
+	}
+
+	this.showPreviousQuestion = function() {
+		let curQuestionIndex = this.selectedQuestion ? this.selectedQuestion.index - 1 : this.questions.length - 1;
+		if (curQuestionIndex < 0) return;
+
+		this.questions[curQuestionIndex].select();
+	}
+
+	
+
 	this.setQuestionList = function(_questionList) {
 		this.questions = [];
 		HTML.questionListHolder.innerHTML = "";
@@ -82,11 +99,13 @@ function Controller_questionHolder() {
 			Self: _html
 		}
 
-		HTML.Self.onclick = function() {
-			This.displayOnDisplayerScreen();
+		HTML.Self.onclick = function() {This.select();}
+
+		this.select = function() {
+			this.displayOnDisplayerScreen();
 			
 			if (Controller.questionHolder.selectedQuestion) Controller.questionHolder.selectedQuestion.deselect();
-			Controller.questionHolder.selectedQuestion = This;
+			Controller.questionHolder.selectedQuestion = this;
 
 			HTML.Self.classList.add("selected");
 		}

@@ -68,7 +68,13 @@
 		width: 47.5%;
 	}
 
-	.infoBar .infoHalf:nth-child(2) {
+	.infoBar .infoHalf.leftHalf .text {
+		float: left;
+	}
+
+
+
+	.infoBar .infoHalf:not(.leftHalf) {
 		margin-left: 5%;
 	}
 
