@@ -75,6 +75,8 @@ function Controller_questionHolder() {
 
 	function _questionObject(_question, _html) {
 		this.question = _question;
+		this.index = Controller.questionHolder.questions.length;
+
 		let This = this;
 		const HTML = {
 			Self: _html
@@ -82,10 +84,11 @@ function Controller_questionHolder() {
 
 		HTML.Self.onclick = function() {
 			This.displayOnDisplayerScreen();
-			HTML.Self.classList.add("selected");
 			
 			if (Controller.questionHolder.selectedQuestion) Controller.questionHolder.selectedQuestion.deselect();
 			Controller.questionHolder.selectedQuestion = This;
+
+			HTML.Self.classList.add("selected");
 		}
 
 		this.displayOnDisplayerScreen = function() {
