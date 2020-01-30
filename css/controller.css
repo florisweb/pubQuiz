@@ -91,11 +91,14 @@
 
 #displayerFrame {
 	position: absolute;
-	left: 0;
-	top: 50vh;
+	left: -22.5vw;
+
+	top: 25vh;
 	margin: 2.5%;
-	width: 45%;
-	height: 45vh;
+	width: 90vw;
+	height: 90vh;
+	transform: scale(.5);
+
 	border: none;
 	border-radius: 10px;
 }
@@ -117,8 +120,6 @@
 	margin-top: 0;
 	width: 45%;
 }
-
-
 
 
 
