@@ -257,42 +257,32 @@ function Controller_teamHolder() {
 
 
 
+let catagories = [];
+catagories["Algemene kennis"]	= {name: "Algemene kennis", color: "rgb(161, 0, 212)"};
+catagories["Aardrijkskunde"] 	= {name: "Aardrijkskunde", color: "#11e182"};
+catagories["Geschiedenis"] 		= {name: "Geschiedenis", color: "#e00000"};
+catagories["Sport"] 			= {name: "Sport", color: "rgb(255, 177, 0)"};
+catagories["Cultuur"] 			= {name: "Cultuur", color: "#11B1B2"};
+	catagories["Muziek"] 			= {name: "Muziek", color: "#07e798"};
+
+catagories["Lokaal"] 			= {name: "Lokaal", color: "rgb(128, 144, 153)"};
+	catagories["Kerk"] 				= {name: "Kerk", color: "rgb(252, 220, 0)"};
+catagories["Politiek"] 			= {name: "Politiek", color: "rgb(77, 120, 238)"};
+// #08f7a8
 
 
-
-
-let catagories = [
-	{name: "Algemene kennis", color: "#11B1B2"},
-	{name: "Aardrijkskunde", color: "#08f7a8"},
-	{name: "Geschiedenis", color: "#F0C808"},
-	{name: "Cultuur", color: "#DD1C1A"},
-	{name: "Lokaal", color: "#11B1B2"},
-	{name: "Sport", color: "#11B1B2"},
-	{name: "Muziek", color: "#11B1B2"},
-	{name: "Politiek", color: "#11B1B2"},
-	{name: "Kerk", color: "#11B1B2"},
-];
 
 let questions = [
-	{question: "Wat is de hoofdstad van Noord-Holland?", catagory: catagories[0]},
-	{question: "Een groep jongeren gaat van Dieren met de trein naar Roemenië. Door welke landen komen zij met de trein?", catagory: catagories[1]},
-	{question: "Wat zijn de drie (ouderwetse) betekenissen van een Talent?", catagory: catagories[2]},
-	{question: "Tot welke taalgroep hoort het Roemeens?", catagory: catagories[3]},
-	{question: "Vraag over dracula?", catagory: catagories[3]},
-	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/1.gif"},
-	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/2.gif"},
-	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/3.jpg"},
-	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/4.jpeg"},
-	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/5.png"},
-	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/6.jpeg"},
-	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/7.png"},
-	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/8.jpeg"},
-	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/9.png"},
-	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/10.jpeg"},
-	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/11.png"},
-	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/12.gif"},
-	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/13.gif"},
-	{question: "Van welk land is dit de vlag?", catagory: catagories[1], url: "images/uploads/14.gif"}
+	{question: "Wat is de hoofdstad van Noord-Holland?", 						catagory: catagories["Algemene kennis"]},
+	{question: "Een groep jongeren gaat van Dieren met de trein naar Roemenië. Door welke landen komen zij met de trein?", 
+																				catagory: catagories["Aardrijkskunde"]},
+	{question: "Wat zijn de drie (ouderwetse) betekenissen van een Talent?", 	catagory: catagories["Geschiedenis"]},
+	{question: "Tot welke taalgroep hoort het Roemeens?", 						catagory: catagories["Sport"]},
+	{question: "Vraag over dracula?", 											catagory: catagories["Cultuur"]},
+	{question: "Van welk land is dit de vlag?",									catagory: catagories["Muziek"], url: "images/uploads/1.gif"},
+	{question: "Van welk land is dit de vlag?", 								catagory: catagories["Lokaal"], url: "images/uploads/2.gif"},
+	{question: "Van welk land is dit de vlag?", 								catagory: catagories["Kerk"], url: "images/uploads/3.jpg"},
+	{question: "Van welk land is dit de vlag?", 								catagory: catagories["Politiek"], url: "images/uploads/4.jpeg"}
 ];
 
 
