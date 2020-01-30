@@ -98,6 +98,7 @@ function Controller_questionHolder() {
 		const HTML = {
 			Self: _html
 		}
+		HTML.Self.classList.add("clickable");
 
 		HTML.Self.onclick = function() {This.select();}
 
@@ -262,11 +263,14 @@ catagories["Algemene kennis"]	= {name: "Algemene kennis", color: "rgb(161, 0, 21
 catagories["Aardrijkskunde"] 	= {name: "Aardrijkskunde", color: "#11e182"};
 catagories["Geschiedenis"] 		= {name: "Geschiedenis", color: "#e00000"};
 catagories["Sport"] 			= {name: "Sport", color: "rgb(255, 177, 0)"};
-catagories["Cultuur"] 			= {name: "Cultuur", color: "#11B1B2"};
-	catagories["Muziek"] 			= {name: "Muziek", color: "#07e798"};
+	catagories["Cultuur"] 			= {name: "Cultuur", color: "#11B1B2"};
+	catagories["Muziek"] 			= {name: "Muziek", color: "rgb(155, 70, 156)"};
 
+// 07e798
 catagories["Lokaal"] 			= {name: "Lokaal", color: "rgb(128, 144, 153)"};
-	catagories["Kerk"] 				= {name: "Kerk", color: "rgb(252, 220, 0)"};
+	// catagories["Kerk"] 				= {name: "Kerk", color: "rgb(252, 220, 0)"};
+	catagories["Kerk"] 				= {name: "Kerk", color: "rgb(242, 220, 200)"};
+
 catagories["Politiek"] 			= {name: "Politiek", color: "rgb(77, 120, 238)"};
 // #08f7a8
 
