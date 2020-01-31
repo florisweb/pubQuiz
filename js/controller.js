@@ -45,7 +45,9 @@ const Controller = new function() {
 function Controller_questionHolder() {
 	let HTML = {
 		questionListHolder: $(".questionListHolder")[0],
+		questionProgressHolder: questionProgressHolder,
 	}
+
 	this.questions = [];
 	this.selectedQuestion = false;
 
@@ -53,6 +55,7 @@ function Controller_questionHolder() {
 		let curQuestionIndex = this.selectedQuestion ? this.selectedQuestion.index + 1 : 0;
 		if (curQuestionIndex >= this.questions.length) return;
 
+		setQuestionProgress(curQuestionIndex);
 		this.questions[curQuestionIndex].select();
 	}
 
@@ -60,6 +63,7 @@ function Controller_questionHolder() {
 		let curQuestionIndex = this.selectedQuestion ? this.selectedQuestion.index - 1 : this.questions.length - 1;
 		if (curQuestionIndex < 0) return;
 
+		setQuestionProgress(curQuestionIndex);
 		this.questions[curQuestionIndex].select();
 	}
 
@@ -105,6 +109,9 @@ function Controller_questionHolder() {
 		this.select = function() {
 			this.displayOnDisplayerScreen();
 			
+			setQuestionProgress(this.index);
+			
+			
 			if (Controller.questionHolder.selectedQuestion) Controller.questionHolder.selectedQuestion.deselect();
 			Controller.questionHolder.selectedQuestion = this;
 
@@ -119,6 +126,11 @@ function Controller_questionHolder() {
 			HTML.Self.classList.remove("selected");
 		};
 	}
+
+
+	function setQuestionProgress(_index) {
+		HTML.questionProgressHolder.innerHTML = _index + 1 +  "/" + Controller.questionHolder.questions.length;
+	}
 }
 
 
@@ -131,41 +143,7 @@ function Controller_teamHolder() {
 		teamListHolder: $(".teamListHolder")[0],
 	}
 
-	this.teams = [
-		{
-			name: "team A",
-			score: 0,
-		},
-		{
-			name: "team B",
-			score: 0,
-		},
-		{
-			name: "team C",
-			score: 0,
-		},
-		{
-			name: "De Nieuwlandjes",
-			score: 0,
-		},
-		{
-			name: "Team Bolsons",
-			score: 0,
-		},
-		{
-			name: "Team Ellen?",
-			score: 0,
-		},
-		{
-			name: "Pos 1?",
-			score: 0,
-		},
-		{
-			name: "We are number one!",
-			score: 0,
-		}
-	];
-
+	this.teams = [];
 	this.teams.commitScores = function() {
 		for (team of this) 
 		{
@@ -256,251 +234,3 @@ function Controller_teamHolder() {
 
 
 
-
-
-let catagories = [];
-catagories["Algemene kennis"]	= {name: "Algemene kennis", color: "rgb(161, 0, 212)"};
-catagories["Aardrijkskunde"] 	= {name: "Aardrijkskunde", color: "#11e182"};
-catagories["Geschiedenis"] 		= {name: "Geschiedenis", color: "#e00000"};
-catagories["Sport"] 			= {name: "Sport", color: "rgb(255, 177, 0)"};
-	catagories["Cultuur"] 			= {name: "Cultuur", color: "#11B1B2"};
-	catagories["Muziek"] 			= {name: "Muziek", color: "rgb(155, 70, 156)"};
-
-// 07e798
-catagories["Lokaal"] 			= {name: "Lokaal", color: "rgb(128, 144, 153)"};
-	// catagories["Kerk"] 				= {name: "Kerk", color: "rgb(252, 220, 0)"};
-	catagories["Kerk"] 				= {name: "Kerk", color: "rgb(242, 220, 200)"};
-
-catagories["Politiek"] 			= {name: "Politiek", color: "rgb(77, 120, 238)"};
-// #08f7a8
-
-
-
-let questions = [
-	{question: "Wat is de hoofdstad van Noord-Holland?", 						catagory: catagories["Algemene kennis"]},
-	{question: "Een groep jongeren gaat van Dieren met de trein naar Roemenië. Door welke landen komen zij met de trein?", 
-																				catagory: catagories["Aardrijkskunde"]},
-	{question: "Wat zijn de drie (ouderwetse) betekenissen van een Talent?", 	catagory: catagories["Geschiedenis"]},
-	{question: "Tot welke taalgroep hoort het Roemeens?", 						catagory: catagories["Sport"]},
-	{question: "Vraag over dracula?", 											catagory: catagories["Cultuur"]},
-	{question: "Van welk land is dit de vlag?",									catagory: catagories["Muziek"], url: "images/uploads/1.gif"},
-	{question: "Van welk land is dit de vlag?", 								catagory: catagories["Lokaal"], url: "images/uploads/2.gif"},
-	{question: "Van welk land is dit de vlag?", 								catagory: catagories["Kerk"], url: "images/uploads/3.jpg"},
-	{question: "Van welk land is dit de vlag?", 								catagory: catagories["Politiek"], url: "images/uploads/4.jpeg"}
-];
-
-
-
-
-
-
-Controller.teamHolder.setTeamList(Controller.teamHolder.teams);
-Controller.questionHolder.setQuestionList(questions);
-
-
-// let index = 0;
-// let loop = function () {
-// 	if (index >= questions.length) index = 0;
-
-// 	Server.send(JSON.stringify({
-// 		action: "showQuestion",
-// 		question: questions[index]
-// 	}));
-
-// 	index++;
-// 	setTimeout(loop, 3000 * Math.random() + 1000);
-// };
-
-// setTimeout(loop, 100);
-
-
-// function _Page(_config) {
-// 	let Config = _config;
-// 	this.name = _config.name;
-// 	const HTML = {
-// 		pages: $(".contentPage")
-// 	}
-
-
-
-// 	this.open = function() {
-// 		Page.curPage = this;
-
-// 		openPageByIndex(Config.index);
-// 		Config.onOpen(...arguments);
-// 	}
-
-	
-// 	function openPageByIndex(_index) {
-// 		for (page of HTML.pages) page.classList.add("hide");
-// 		HTML.pages[_index].classList.remove("hide");
-// 	}
-// }
-
-
-
-
-
-
-
-
-
-
-// function Page_scoreBoard() {
-// 	const This = this;
-// 	_Page.call(this, {
-// 		name: "score",
-// 		index: 0,
-// 		onOpen: function(_team) {
-// 			HTML.body.style.background = "";
-// 			This.setScoresByTeam(_team);
-// 		}
-// 	});
-
-// 	const HTML = {
-// 		scoreBars: $(".contentPage .scoreBar"),
-// 		body: document.body
-// 	}
-	
-
-
-// 	this.setScoresByTeam = function(_teams) {
-// 		_teams = setTeamPositions(_teams);
-// 		let maxScore = 30;
-// 		for (team of _teams) if (team.score > maxScore) maxScore = team.score;
-
-
-// 		for (let i = 0; i < _teams.length; i++)
-// 		{
-// 			updateScoreBar(
-// 				i, 
-// 				_teams[i],
-// 				_teams[i].score / maxScore
-// 			);
-// 		}
-// 	}
-
-// 	function setTeamPositions(_teams) {
-// 		let sortedTeams = sortTeams(_teams);
-
-// 		for (let i = 0; i < sortedTeams.length; i++)
-// 		{
-// 			for (team of _teams)
-// 			{
-// 				if (sortedTeams[i].name != team.name) continue;
-// 				team.position = i;
-// 				break;
-// 			}
-// 		}
-
-// 		return _teams;
-// 	}
-
-	
-// 	function sortTeams(_teams) {
-// 		return Object.assign([], _teams).sort(
-// 			function (a, b) {
-// 				if (a.score > b.score) return -1; 
-// 				return 1;
-// 			}
-// 		);
-// 	}
-
-
-// 	const positionClasses = ["first", "second", "third"];
-// 	function updateScoreBar(_scoreBarIndex, _team, _scorePerc) {
-// 		let scoreBar = HTML.scoreBars[_scoreBarIndex];
-		
-// 		for (Class of positionClasses) scoreBar.classList.remove(Class);
-// 		scoreBar.classList.add(positionClasses[_team.position]);
-
-// 		setTextToElement(scoreBar.children[1], _team.name);
-
-// 		setScoreBarHeight(scoreBar, _scorePerc);
-// 		setTimeout(function () {
-// 			animateScore(_team.score, scoreBar);
-// 		}, 300);
-// 	}
-
-// 	function animateScore(_score, _scoreBar) {
-// 		let curScore = parseInt(_scoreBar.children[2].innerHTML);
-// 		if (isNaN(curScore)) curScore = 0;
-// 		let startScore = curScore;
-
-
-// 		update();
-// 		function update() {
-// 			let scoreVelocity = (_score - curScore) * .1;
-// 			if (scoreVelocity < .5) scoreVelocity = 1;
-// 			curScore += scoreVelocity;
-
-// 			_scoreBar.children[2].innerHTML = Math.round(curScore) + "pts";
-// 			if (curScore >= _score) return;
-
-// 			setTimeout(function () {update()}, 50);
-// 		}
-// 	}
-
-
-
-// 	function setScoreBarHeight(_scoreBar, _percentage) {
-// 		const min = .14;
-// 		const max = .75;
-		
-// 		let percentage = mapValue(_percentage, 0, 1, min, max);
-// 		_scoreBar.style.top = (1 - percentage) * 100 + "%";
-// 	}
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function Page_questionPage() {
-// 	const This = this;
-// 	_Page.call(this, {
-// 		name: "question",
-// 		index: 1,
-// 		onOpen: function(_question) {
-// 			This.showQuestion(_question);
-// 		}
-// 	});
-
-
-// 	const HTML = {
-// 		questionHolder: questionHolder,
-// 		catagoryHolder: $(".contentPage .catagoryHolder")[0],
-// 		body: document.body
-// 	}
-
-
-// 	this.showQuestion = function(_question) {
-
-// 		writeQuestion(_question);
-// 		setTimeout(function () {writeCatagory(_question.catagory)}, 500);
-
-// 	}
-
-
-	
-// 	function writeQuestion(_question) {
-// 		HTML.questionHolder.classList.add("hide");
-// 		setTimeout(function () {
-// 			setTextToElement(HTML.questionHolder, _question.question);
-// 			HTML.questionHolder.classList.remove("hide");
-// 		}, 500);
-// 	}
-
-// 	function writeCatagory(_catagory) {
-// 		HTML.body.style.background = _catagory.color;
-// 		setTextToElement(HTML.catagoryHolder, _catagory.name);
-// 	}
-// }

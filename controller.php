@@ -42,10 +42,7 @@
 						<div class="text button bDefault bBoxy clickable" style="width: 70px" onclick="Controller.questionHolder.showNextQuestion()">
 							Next ᐅ
 						</div>
-						<div class="text">2 screens connected</div>
-						<br>
-						<div class="text">Key: 13342</div>
-						<div class="text">Question 0/15</div>
+						<div class="button text" id="questionProgressHolder"></div>
 					</div>
 
 					<div class="whiteBox infoHalf">
@@ -78,6 +75,7 @@
 		<script src="js/extraFunctions.js"></script>
 		<script src="js/server.js"></script>
 		<script src="js/controller.js"></script>
+		<script src="js/info.js"></script>
 
 		
 
