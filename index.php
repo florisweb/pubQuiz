@@ -15,7 +15,7 @@
 	<body>
 	
 		<div id="mainContentHolder">
-			<div class="contentPage hide">
+			<div class="contentPage hide" style="overflow: hidden;">
 				<div class="scoreBar">
 					<div class="positionIndicatorHolder"></div>
 					<div class="text teamNameHolder"></div>
