@@ -45,9 +45,13 @@
 						<div class="button text" id="questionProgressHolder"></div>
 					</div>
 
-					<div class="whiteBox infoHalf">
-						<button onclick="Server.showTop3Scores();">Show top 3 scores</button>
-						<button onclick="Server.showScoreList();">Show scorelist</button>
+					<div class="infoHalf">
+						<div class="text button bDefault bBoxy clickable" style="width: 140px; float: left; margin-right: 10px" onclick="Server.showTop3Scores()">
+							Show top 3 scores
+						</div>
+						<div class="text button bDefault bBoxy clickable" style="width: 120px; float: left" onclick="Server.showScoreList()">
+							Show scorelist
+						</div>
 					</div>
 				</div>
 
