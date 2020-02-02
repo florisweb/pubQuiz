@@ -135,7 +135,7 @@ body {
 	border-radius: 10px;
 	box-shadow: 5px 5px 30px 10px rgba(0, 0, 0, .01);
 
-	font-size: 25px;
+	font-size: 2em;
 	/*color: #333;*/
 	color: #eee;
 
@@ -349,6 +349,26 @@ body {
 	margin: auto;
 	width: 60px;
 }
+
+
+
+
+
+
+
+
+
+
+
+/*Catagorypage*/
+#catagoryPage.contentPage .catagoryHolder {
+	margin-top: 0;
+	font-size: 5em;
+
+	top: 45vh;
+	transform: translateY(-50%);
+}
+
 
 
 

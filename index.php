@@ -38,10 +38,8 @@
 			</div>
 			
 			<div class="contentPage hide">
-			
 				<div class="centerAligner">
-					<div class="text hide catagoryHolder">
-					</div>
+					<div class="text hide catagoryHolder"></div>
 					<br>
 
 					<div class="text hide whiteBox" id="questionHolder">
@@ -59,7 +57,12 @@
 					<br>
 					<div class="text button bDefault" onclick="Page.connectionPage.attemptToConnect()">Next</div>
 				</div>
-				
+			</div>
+
+			<div id="catagoryPage" class="contentPage hide">
+				<div class="centerAligner">
+					<div class="text catagoryHolder"></div>
+				</div>
 			</div>
 		</div>
 

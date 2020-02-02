@@ -9,12 +9,12 @@ const Page = new function() {
 	this.questionPage 	= new Page_questionPage();
 
 	this.connectionPage = new Page_connectionPage();
+	this.catagoryPage 	= new Page_catagoryPage();
 }
 
 
 function _Page(_config) {
 	let Config = _config;
-	this.name = _config.name;
 	const HTML = {
 		pages: $(".contentPage")
 	}
@@ -45,7 +45,6 @@ function _Page(_config) {
 function Page_top3Score() {
 	const This = this;
 	_Page.call(this, {
-		name: "top3Score",
 		index: 0,
 		onOpen: function(_team) {
 			HTML.body.style.background = "";
@@ -157,7 +156,6 @@ let Team = new function() {
 function Page_scoreList() {
 	const This = this;
 	_Page.call(this, {
-		name: "scoreList",
 		index: 1,
 		onOpen: function(_team) {
 			HTML.body.style.background = "";
@@ -241,7 +239,6 @@ function Page_scoreList() {
 function Page_questionPage() {
 	const This = this;
 	_Page.call(this, {
-		name: "question",
 		index: 2,
 		onOpen: function(_question) {
 			if (!_question) return;
@@ -298,7 +295,6 @@ function Page_questionPage() {
 function Page_connectionPage() {
 	const This = this;
 	_Page.call(this, {
-		name: "connect",
 		index: 3,
 		onOpen: function(_question) {
 			HTML.keyHolder.value = null;
@@ -337,4 +333,32 @@ function Page_connectionPage() {
 	    window.history.pushState('data', 'Title', new_url);
 	    document.title = title;
 	}
+}
+
+
+
+
+
+function Page_catagoryPage() {
+	const This = this;
+	_Page.call(this, {
+		index: 4,
+		onOpen: function(_catagory) {
+			if (!_catagory) return;
+			This.showCatagory(_catagory);
+		}
+	});
+
+	const HTML = {
+		catagoryHolder: $("#catagoryPage.contentPage .catagoryHolder")[0],
+		body: document.body
+	}
+
+
+	this.showCatagory = function(_catagory) {
+		HTML.body.style.background = _catagory.color;
+		setTextToElement(HTML.catagoryHolder, _catagory.name);
+	}
+	
+
 }
