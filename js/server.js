@@ -111,6 +111,7 @@ function _Server_displayer() {
 			case "showQuestion": Page.questionPage.open(data.question); break;
 			case "showTop3Scores": Page.top3ScorePage.open(data.scores); break;
 			case "showScoreList": Page.scoreListPage.open(data.scores); break;
+			case "showCatagory": Page.catagoryPage.open(data.catagory); break;
 			default: console.warn("Action " + data.action + " doesn't exist"); break;
 		}
 	};

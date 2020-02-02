@@ -369,6 +369,15 @@ body {
 	transform: translateY(-50%);
 }
 
+#catagoryPage.contentPage .catagoryHolder.hide {
+	animation: dropOut 0.6s 1;
+	animation-fill-mode: forwards;
+}
+
+#catagoryPage.contentPage .catagoryHolder:not(.hide) {
+	animation: dropIn 0.6s 1;
+	animation-fill-mode: forwards;
+}
 
 
 

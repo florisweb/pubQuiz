@@ -39,7 +39,7 @@
 			
 			<div class="contentPage hide">
 				<div class="centerAligner">
-					<div class="text hide catagoryHolder"></div>
+					<div class="text catagoryHolder"></div>
 					<br>
 
 					<div class="text hide whiteBox" id="questionHolder">

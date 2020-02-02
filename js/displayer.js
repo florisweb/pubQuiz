@@ -356,8 +356,13 @@ function Page_catagoryPage() {
 
 
 	this.showCatagory = function(_catagory) {
-		HTML.body.style.background = _catagory.color;
-		setTextToElement(HTML.catagoryHolder, _catagory.name);
+		HTML.catagoryHolder.classList.add("hide");
+
+		setTimeout(function () {
+			HTML.catagoryHolder.classList.remove("hide");
+			setTextToElement(HTML.catagoryHolder, _catagory.name);
+			HTML.body.style.background = _catagory.color;
+		}, 500);
 	}
 	
 
