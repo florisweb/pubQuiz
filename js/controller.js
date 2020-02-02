@@ -87,7 +87,7 @@ function Controller_questionHolder() {
 			flagColor: _question.catagory.color,
 			flagText: _question.catagory.name
 		}, HTML.questionListHolder);
-		
+
 		this.questions.push(new _questionObject(
 			_question,
 			html
@@ -104,7 +104,13 @@ function Controller_questionHolder() {
 		}
 		HTML.Self.classList.add("clickable");
 
-		HTML.Self.onclick = function() {This.select();}
+		HTML.Self.children[2].onclick = function() {Server.showCatagory(_question.catagory);}
+		HTML.Self.onclick = function(_e) {
+			if (_e.target != this) return;
+			This.select();
+		}
+
+
 
 		this.select = function() {
 			this.displayOnDisplayerScreen();

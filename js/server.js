@@ -59,6 +59,12 @@ function _Server_controller() {
 		}));
 	}
 
+	this.showCatagory = function(_catagory) {
+		this.send(JSON.stringify({
+			action: "showCatagory",
+			catagory: _catagory
+		}));
+	}
 
 
 	socket.onopen = function(e) {

@@ -17,11 +17,18 @@
 	z-index: 0;
 }
 
+.listItem .titleHolder {
+	pointer-events: none;
+}
+.listItem .lineHolder {
+	pointer-events: none;
+}
 
 .listItem .positionIndicator {
 	background-size: 0% auto;
 	
 	transition: color .3s, background-size .2s, background;
+	pointer-events: none;
 }
 
 .listItem.selected .positionIndicator {
