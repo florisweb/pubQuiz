@@ -124,7 +124,10 @@ function _Client(_connection) {
             break;
             case "controller":
                 let key = parseInt(String(_data.key).substr(0, KEY_LENGTH));
-                if (!_data.key || !key || isNaN(key) || key < 0) key = Math.round(Math.random() * Math.pow(10, KEY_LENGTH));
+                if (
+                    !_data.key || !key || isNaN(key) || key < 0 ||
+                    Clients.findController(key)
+                ) key = generateKey();
                 
                 this.key = key;
                 this.type = "controller";
@@ -142,6 +145,11 @@ function _Client(_connection) {
 
     this.remove = function() {
         Client.removeClient(this.id);
+    }
+
+
+    function generateKey() {
+        return Math.round(Math.random() * Math.pow(10, KEY_LENGTH));
     }
 }
 
