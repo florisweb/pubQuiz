@@ -11,13 +11,13 @@ const https = require('https');
 
 const DOMAIN = "pubquiz.ga";
 const PORT = 8080;
-
+const ALLOWED_ORIGINS = ["https://pubquiz.ga", "http://localhost"];
+const KEY_LENGTH = 5;
 const sshKeys = {
     key:    fs.readFileSync("/etc/letsencrypt/archive/" + DOMAIN + "/privkey1.pem"),
     cert:   fs.readFileSync("/etc/letsencrypt/archive/" + DOMAIN + "/fullchain1.pem"),
     ca:     fs.readFileSync("/etc/letsencrypt/archive/" + DOMAIN + "/chain1.pem")
 };
-
 
 
 
@@ -30,8 +30,7 @@ var wss = new WebSocket.Server({server: server});
 
 
 function originIsAllowed(origin) {
-    let allowedOrigins = ["https://pubquiz.ga", "http://localhost"];
-    if (!allowedOrigins.includes(origin)) return false;
+    if (!ALLOWED_ORIGINS.includes(origin)) return false;
     return true;
 }
 
@@ -48,11 +47,8 @@ wss.on('connection', function(ws, request, client) {// Web Socket
 
     console.log('[Connect] Connection from origin ' + request.headers.origin + ' with protocol ' + protocol + ' allowed.');
 
-
-    
     let Client = new _Client(ws);
     Clients.push(Client);
-
 
     Client.connection.on('message', function(_message) {
         let clientData = JSON.parse(_message);
@@ -70,7 +66,6 @@ wss.on('connection', function(ws, request, client) {// Web Socket
         Clients.removeClient(Client.id);
     });
 });
-
 
 
 
@@ -104,7 +99,6 @@ Clients.findController = function(_key) {
 
 
 
-
 function _Client(_connection) {
     this.id         = newId();
     this.enabled    = false;
@@ -121,15 +115,19 @@ function _Client(_connection) {
                 this.type = "displayer";
                 let controller = Clients.findController(_data.key);
                 if (!controller) return this.send(JSON.stringify({error: "Controller not found"}));
+
                 this.controller = controller;
                 this.controller.screenClients.push(this);
 
                 this.send(JSON.stringify({connectionStatus: "OK", key: this.controller.key}));
                 this.controller.send(JSON.stringify({message: "A displayer connected", id: this.id}));
             break;
-            case "controller": 
+            case "controller":
+                let key = parseInt(String(_data.key).substr(0, KEY_LENGTH));
+                if (!_data.key || !key || isNaN(key) || key < 0) key = Math.round(Math.random() * Math.pow(10, KEY_LENGTH));
+                
+                this.key = key;
                 this.type = "controller";
-                this.key = Math.round(Math.random() * 100000);
                 this.send(JSON.stringify({connectionStatus: "OK", key: this.key}));
             break;
             default: return false; break;
@@ -153,4 +151,3 @@ function _Client(_connection) {
 
 
 function newId() {return parseInt(Math.round(Math.random() * 100000000) + "" + Math.round(Math.random() * 100000000));}
-

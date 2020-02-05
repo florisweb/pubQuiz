@@ -69,8 +69,12 @@ function _Server_controller() {
 
 	socket.onopen = function(e) {
 	  console.log("[open] Connection established");
-	  socket.send(JSON.stringify({type: "controller"}));
+	  This.register();
 	};
+
+	this.register = function(_key) {
+		socket.send(JSON.stringify({type: "controller", key: parseInt(_key)}));
+	}
 
 	socket.onmessage = function(event) {
 	  console.log(`[message] Data received from server: ${event.data}`);
