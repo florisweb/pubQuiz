@@ -58,6 +58,8 @@ wss.on('connection', function(ws, request, client) {// Web Socket
 
         console.log("[Controller " + Client.id + "] send: " + JSON.stringify(clientData));
         
+        Client.lastMessage = JSON.stringify(clientData);
+
         for (client of Clients)
         {
             if (client.type != "displayer" || !client.enabled) continue;
@@ -122,6 +124,7 @@ function _Client(_connection) {
 
                 this.controller = controller;
                 this.send(JSON.stringify({connectionStatus: "OK", key: this.controller.key}));
+                this.send(this.controller.lastMessage);
                 this.controller.send(JSON.stringify({message: "A displayer connected", id: this.id}));
             break;
             case "controller":
