@@ -15,12 +15,22 @@ function _Server(_socketHandler) {
 	    // e.g. server process killed or network down
 	    // event.code is usually 1006 in this case
 	    console.log('[close] Connection died');
+	    This.onConnectionDied();
 	  }
+	};
+
+	socket.onopen = function(e) {
+	  	console.log("[open] Connection established");
+	  	This.onConnectionOpen();
 	};
 
 	socket.onerror = function(error) {
 	  console.log(`[error] ${error.message}`);
+	  This.onConnectionDied();
 	};
+
+	this.onConnectionDied = function() {};
+	this.onConnectionOpen = function() {};
 
 	this.onConnect = function() {console.log("[Connected]");}
 	this.onConnectionError = function() {console.log("[Error]");}
@@ -66,14 +76,8 @@ function _Server_controller() {
 		}));
 	}
 
-
-	socket.onopen = function(e) {
-	  console.log("[open] Connection established");
-	  This.register();
-	};
-
 	this.register = function(_key) {
-		socket.send(JSON.stringify({type: "controller", key: parseInt(_key)}));
+		this.send(JSON.stringify({type: "controller", key: parseInt(_key)}));
 	}
 
 	socket.onmessage = function(event) {
@@ -104,12 +108,8 @@ function _Server_displayer() {
 	this.type = "displayer";
 
 	this.register = function(_key) {
-		socket.send(JSON.stringify({type: "displayer", key: parseInt(_key)}));
+		this.send(JSON.stringify({type: "displayer", key: parseInt(_key)}));
 	}
-
-	socket.onopen = function(e) {
-	  	console.log("[open] Connection established");
-	};
 
 	socket.onmessage = function(event) {
 		console.log(`[message] Data received from server: ${event.data}`);

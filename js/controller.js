@@ -1,18 +1,29 @@
-// const Page = new function() {
 
-// 	this.curPage 		= this.questionPage;
-// 	this.scorePage 		= new Page_scoreBoard();
-// 	this.questionPage 	= new Page_questionPage();
-// }
+let Server;
 
+connectServer();
+function connectServer() {
+	let reConnecting = false;
+	
+	Server = new _Server_controller();
+	Server.onConnectionOpen = function() {
+		Server.register(Server.key);
+	}
+	
+	Server.onConnect = function() {
+		document.title = "Displaykey: " + Server.key; 
+		displayerFrame.src = ".?key=" + Server.key;
+	}
 
+	Server.onConnectionDied = function() {
+		if (reConnecting) return;
+		reConnecting = true;
+		
+		console.log("-- connection died -- reconnecting..");
+		setTimeout(connectServer, 5000);
+	};
+}
 
-
-
-
-const Server = new _Server_controller();
-// Server.onConnect = function() {document.title = "Displaykey: " + Server.key; displayerFrame.src = "/?key=" + Server.key;}
-Server.onConnect = function() {document.title = "Displaykey: " + Server.key; displayerFrame.src = ".?key=" + Server.key;}
 
 
 const Controller = new function() {

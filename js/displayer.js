@@ -1,4 +1,23 @@
-const Server = new _Server_displayer();
+let Server;
+
+connectServer();
+function connectServer() {
+	let reConnecting = false;	
+	Server = new _Server_displayer();
+	 
+	Server.onConnectionOpen = function() {
+		Server.register(10000);
+	}
+	
+	Server.onConnectionDied = function() {
+		if (reConnecting) return;
+		reConnecting = true;
+		
+		console.log("-- connection died -- reconnecting..");
+		setTimeout(connectServer, 5000);
+	};
+}
+
 
 
 const Page = new function() {

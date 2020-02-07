@@ -123,13 +123,16 @@ function _Client(_connection) {
                 this.controller.send(JSON.stringify({message: "A displayer connected", id: this.id}));
             break;
             case "controller":
-                let key = parseInt(String(_data.key).substr(0, KEY_LENGTH));
-                if (
-                    !_data.key || !key || isNaN(key) || key < 0 ||
-                    Clients.findController(key)
-                ) key = generateKey();
+                // let key = parseInt(String(_data.key).substr(0, KEY_LENGTH));
+                // if (
+                //     !_data.key || !key || isNaN(key) || key < 0 ||
+                //     Clients.findController(key)
+                // ) key = generateKey();
                 
-                this.key = key;
+                // this.key = key;
+                this.key = 10000;
+                Clients.removeClient(Clients.findController(this.key).id);
+                
                 this.type = "controller";
                 this.send(JSON.stringify({connectionStatus: "OK", key: this.key}));
             break;
