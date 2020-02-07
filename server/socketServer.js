@@ -54,11 +54,17 @@ wss.on('connection', function(ws, request, client) {// Web Socket
         let clientData = JSON.parse(_message);
 
         if (!Client.enabled) return Client.enable(clientData);
-        if (Client.type != "controller" || !Client.screenClients.length) return;
+        if (Client.type != "controller") return;
 
         console.log("[Controller " + Client.id + "] send: " + JSON.stringify(clientData));
         
-        for (client of Client.screenClients) client.send(JSON.stringify(clientData));
+        for (client of Clients)
+        {
+            if (client.type != "displayer" || !client.enabled) continue;
+            if (!client.controller || client.controller.key != Client.key) continue;
+
+            client.send(JSON.stringify(clientData));
+        }
     });
 
     Client.connection.on('close', function(reasonCode, description) {
@@ -105,8 +111,6 @@ function _Client(_connection) {
     this.type       = false;
     this.connection = _connection;
 
-    this.screenClients = [];
-
     this.enable = function(_data) {
         let clientType = _data.type;
         switch (clientType) 
@@ -117,8 +121,6 @@ function _Client(_connection) {
                 if (!controller) return this.send(JSON.stringify({error: "Controller not found"}));
 
                 this.controller = controller;
-                this.controller.screenClients.push(this);
-
                 this.send(JSON.stringify({connectionStatus: "OK", key: this.controller.key}));
                 this.controller.send(JSON.stringify({message: "A displayer connected", id: this.id}));
             break;
@@ -132,7 +134,7 @@ function _Client(_connection) {
                 // this.key = key;
                 this.key = 10000;
                 Clients.removeClient(Clients.findController(this.key).id);
-                
+
                 this.type = "controller";
                 this.send(JSON.stringify({connectionStatus: "OK", key: this.key}));
             break;
