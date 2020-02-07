@@ -135,9 +135,8 @@ body {
 	border-radius: 10px;
 	box-shadow: 5px 5px 30px 10px rgba(0, 0, 0, .01);
 
-	font-size: 2em;
-	/*color: #333;*/
-	color: #eee;
+	font-size: 2.5em;
+	color: #fff;
 
 	transition: all .3s;
 }
@@ -162,8 +161,8 @@ body {
 	
 	padding: 25px;
 
-	font-size: calc(7vh);
-	color: #777;
+	font-size: calc(8vh);
+	color: #333;
 
 	transition: all .3s;
 }
