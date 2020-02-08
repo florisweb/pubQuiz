@@ -81,17 +81,24 @@ function Page_top3Score() {
 
 	this.setScoresByTeam = function(_teams) {
 		_teams = Team.setTeamPositions(_teams);
-		let maxScore = 30;
-		for (team of _teams) if (team.score > maxScore) maxScore = team.score;
-
+		let maxScore = 0;
+		let minScore = Infinity;
 
 		for (let i = 0; i < 3; i++)
 		{
-			console.log(_teams[i]);
+			if (_teams[i].score > maxScore) maxScore = _teams[i].score;
+			if (_teams[i].score < minScore) minScore = _teams[i].score;
+		}
+
+		const adjuster = maxScore / 200 * .1 + .2;
+		for (let i = 0; i < 3; i++)
+		{
+			let perc = (_teams[i].score - minScore) / (maxScore - minScore) * (1 - adjuster);
+
 			updateScoreBar(
 				_teams[i],
-				_teams[i].score / maxScore
-			);
+				perc + adjuster
+			); 
 		}
 	}
 
