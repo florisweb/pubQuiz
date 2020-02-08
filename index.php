@@ -16,17 +16,17 @@
 	
 		<div id="mainContentHolder">
 			<div class="contentPage hide" style="overflow: hidden;">
-				<div class="scoreBar">
+				<div class="scoreBar second">
 					<div class="positionIndicatorHolder"></div>
 					<div class="text teamNameHolder"></div>
 					<div class="text scoreHolder"></div>
 				</div>
-				<div class="scoreBar">
+				<div class="scoreBar first">
 					<div class="positionIndicatorHolder"></div>
 					<div class="text teamNameHolder"></div>
 					<div class="text scoreHolder"></div>
 				</div>
-				<div class="scoreBar">
+				<div class="scoreBar third">
 					<div class="positionIndicatorHolder"></div>
 					<div class="text teamNameHolder"></div>
 					<div class="text scoreHolder"></div>

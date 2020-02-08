@@ -85,22 +85,24 @@ function Page_top3Score() {
 		for (team of _teams) if (team.score > maxScore) maxScore = team.score;
 
 
-		for (let i = 0; i < _teams.length; i++)
+		for (let i = 0; i < 3; i++)
 		{
+			console.log(_teams[i]);
 			updateScoreBar(
-				i, 
 				_teams[i],
 				_teams[i].score / maxScore
 			);
 		}
 	}
 
-	const positionClasses = ["first", "second", "third"];
-	function updateScoreBar(_scoreBarIndex, _team, _scorePerc) {
-		let scoreBar = HTML.scoreBars[_scoreBarIndex];
-		
-		for (Class of positionClasses) scoreBar.classList.remove(Class);
-		scoreBar.classList.add(positionClasses[_team.position]);
+	function updateScoreBar(_team, _scorePerc) {
+		let scoreBar = HTML.scoreBars[0];
+		switch (_team.position)
+		{
+			case 0: scoreBar = HTML.scoreBars[1]; break;
+			case 1: scoreBar = HTML.scoreBars[0]; break;
+			case 2: scoreBar = HTML.scoreBars[2]; break;
+		}
 
 		setTextToElement(scoreBar.children[1], _team.name);
 
@@ -123,7 +125,7 @@ function Page_top3Score() {
 			curScore += scoreVelocity;
 
 			_scoreBar.children[2].innerHTML = Math.round(curScore) + "pts";
-			if (curScore >= _score) return;
+			if (curScore >= _score) return _scoreBar.children[2].innerHTML = Math.round(_score) + "pts";
 
 			setTimeout(function () {update()}, 50);
 		}
@@ -137,7 +139,6 @@ function Page_top3Score() {
 		
 		let percentage = mapValue(_percentage, 0, 1, min, max);
 		_scoreBar.style.top = (1 - percentage) * 100 + "%";
-		_scoreBar.style.height = percentage * 100 + "%";
 	}
 }
 
@@ -189,13 +190,9 @@ function Page_scoreList() {
 	}
 
 
-	let lastScoreList = [];
 	this.setScoreListByTeams = function(_teams) {
-		_teams = setScoreChanges(_teams, lastScoreList);
 		HTML.scoreListHolder.innerHTML = "";
 		this.addListItemsByTeams(_teams);
-
-		lastScoreList = _teams;
 	}
 
 
@@ -224,22 +221,6 @@ function Page_scoreList() {
 		HTML.scoreListHolder.append(html);
 	}
 
-
-	function setScoreChanges(_newScores, _oldScores) {
-		let newScores = [];
-		for (newScore of _newScores)
-		{
-			for (oldScore of _oldScores)
-			{
-				if (newScore.name != oldScore.name) continue;
-				newScore.scoreChange = newScore.score - oldScore.score;
-				break;
-			}
-			newScores.push(newScore);
-		}
-
-		return newScores;
-	}
 }
 
 
