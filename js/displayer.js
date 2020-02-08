@@ -219,13 +219,7 @@ function Page_scoreList() {
 		
 		setTextToElement(html.children[0], parseInt(_team.position) + 1);
 		setTextToElement(html.children[1], _team.name);
-
-		
-		let scoreText = parseInt(_team.score);
-		if (_team.scoreChange < 0) {scoreText = "▼ " + scoreText; html.classList.add("scoreDown");}
-		if (_team.scoreChange > 0) {scoreText = "▲ " + scoreText; html.classList.add("scoreUp");}
-
-		setTextToElement(html.children[2], scoreText);
+		setTextToElement(html.children[2], parseInt(_team.score));
 
 		HTML.scoreListHolder.append(html);
 	}

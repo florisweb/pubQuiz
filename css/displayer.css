@@ -162,7 +162,7 @@ body {
 	padding: 25px;
 
 	font-size: calc(8vh);
-	color: #333;
+	color: #333 !important;
 
 	transition: all .3s;
 }
@@ -263,8 +263,16 @@ body {
 
 
 
+
+.scoreListHolder .listItem {
+	width: calc(100% - 10px * 2);
+	height: 40px;
+
+	padding: 12px 10px;
+}
+
 .scoreListHolder .listItem .text {
-	font-size: 16px !important;
+	font-size: 20px !important;
 	font-weight: bolder;
 }
 
@@ -299,18 +307,6 @@ body {
 		background-repeat: no-repeat;
 		color: transparent !important;
 	}
-
-
-
-
-
-	.listItem.scoreUp .statusHolder.text {
-		background: rgba(0, 255, 0, .5);
-	}
-	.listItem.scoreDown .statusHolder.text {
-		background: rgba(255, 0, 0, .5);
-	}
-
 
 
 
