@@ -29,6 +29,13 @@ const Page = new function() {
 
 	this.connectionPage = new Page_connectionPage();
 	this.catagoryPage 	= new Page_catagoryPage();
+
+
+	this.closePrevPage = function() {
+		try {
+			this.curPage.onClose();
+		} catch (e) {};
+	}
 }
 
 
@@ -41,10 +48,12 @@ function _Page(_config) {
 
 
 	this.open = function() {
+		Page.closePrevPage();
 		Page.curPage = this;
 
 		openPageByIndex(Config.index);
 		Config.onOpen(...arguments);
+		this.onClose = Config.onClose;
 	}
 
 	
@@ -244,6 +253,9 @@ function Page_questionPage() {
 		onOpen: function(_question) {
 			if (!_question) return;
 			This.showQuestion(_question);
+		},
+		onClose: function() {
+			HTML.questionHolder.classList.add("hide");
 		}
 	});
 
@@ -258,10 +270,8 @@ function Page_questionPage() {
 
 
 	this.showQuestion = function(_question) {
-
 		writeQuestion(_question);
 		setTimeout(function () {writeCatagory(_question.catagory)}, 500);
-
 	}
 
 
@@ -347,6 +357,9 @@ function Page_catagoryPage() {
 		onOpen: function(_catagory) {
 			if (!_catagory) return;
 			This.showCatagory(_catagory);
+		},
+		onClose: function() {
+			HTML.catagoryHolder.classList.add("hide");
 		}
 	});
 
